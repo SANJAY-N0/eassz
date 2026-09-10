@@ -1,0 +1,1041 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="theme-color" content="#111111" />
+
+        <title>Absentees List</title>
+
+        <style>
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                font-family: Arial, Helvetica, sans-serif;
+                background: #f4f5f7;
+                color: #222;
+            }
+
+            .container {
+                width: 100%;
+                max-width: 620px;
+                margin: auto;
+                padding: 15px;
+            }
+
+            /* HEADER */
+
+            .header {
+                background: #fff;
+                padding: 18px;
+                border-radius: 16px;
+                margin-bottom: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            }
+
+            .header h1 {
+                margin: 0;
+                font-size: 24px;
+            }
+
+            .header p {
+                margin: 6px 0 0;
+                color: #777;
+                font-size: 14px;
+            }
+
+            /* CARD */
+
+            .card {
+                background: #fff;
+                padding: 16px;
+                border-radius: 15px;
+                margin-bottom: 15px;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+            }
+
+            /* LABEL */
+
+            label {
+                display: block;
+                font-size: 14px;
+                font-weight: bold;
+                margin-bottom: 7px;
+            }
+
+            /* INPUT */
+
+            input,
+            select,
+            textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ddd;
+                border-radius: 10px;
+                font-size: 15px;
+                outline: none;
+                background: #fff;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                border-color: #777;
+            }
+
+            .date-box {
+                margin-bottom: 15px;
+            }
+
+            /* STEP */
+
+            .step {
+                font-size: 13px;
+                color: #777;
+                margin-bottom: 14px;
+            }
+
+            /* SEARCH */
+
+            .search {
+                margin-bottom: 10px;
+            }
+
+            /* STUDENT LIST */
+
+            .student-list {
+                max-height: 350px;
+                overflow-y: auto;
+                border-top: 1px solid #eee;
+                border-bottom: 1px solid #eee;
+            }
+
+            .student {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                padding: 13px 8px;
+                border-bottom: 1px solid #eee;
+                cursor: pointer;
+                user-select: none;
+            }
+
+            .student:last-child {
+                border-bottom: none;
+            }
+
+            .student:hover {
+                background: #f8f8f8;
+            }
+
+            .student.selected {
+                background: #eef5ff;
+            }
+
+            /* CHECKBOX */
+
+            .checkbox {
+                width: 21px;
+                height: 21px;
+                min-width: 21px;
+
+                border: 2px solid #bbb;
+                border-radius: 5px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                font-size: 14px;
+            }
+
+            .student.selected .checkbox {
+                background: #222;
+                border-color: #222;
+                color: #fff;
+            }
+
+            /* COUNT */
+
+            .selected-count {
+                margin-top: 10px;
+                color: #777;
+                font-size: 13px;
+            }
+
+            /* HOUR */
+
+            .hour-box {
+                display: none;
+                margin-bottom: 15px;
+            }
+
+            .hour-box.show {
+                display: block;
+            }
+
+            /* BUTTONS */
+
+            .buttons {
+                display: flex;
+                gap: 8px;
+                margin-top: 15px;
+            }
+
+            button {
+                border: none;
+                border-radius: 10px;
+                padding: 12px 15px;
+                font-size: 14px;
+                font-weight: bold;
+                cursor: pointer;
+            }
+
+            button:active {
+                transform: scale(0.98);
+            }
+
+            .clear-btn {
+                background: #eee;
+                color: #333;
+            }
+
+            .next-btn {
+                flex: 1;
+                background: #111;
+                color: #fff;
+            }
+
+            /* ENTRIES */
+
+            .entries-title {
+                margin: 0 0 12px;
+                font-size: 18px;
+            }
+
+            .entry {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+
+                padding: 12px;
+                background: #f7f7f7;
+
+                border-radius: 10px;
+                margin-bottom: 8px;
+            }
+
+            .entry-name {
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+            .entry-type {
+                display: block;
+                margin-top: 4px;
+                color: #777;
+                font-size: 12px;
+            }
+
+            .remove-btn {
+                background: transparent;
+                color: #d33;
+                padding: 5px 8px;
+            }
+
+            /* COMPLETE */
+
+            .complete-btn {
+                width: 100%;
+                background: #25d366;
+                color: #fff;
+                font-size: 15px;
+            }
+
+            /* RESULT */
+
+            textarea {
+                min-height: 280px;
+                resize: vertical;
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+
+            /* ACTION BUTTONS */
+
+            .action-buttons {
+                display: flex;
+                gap: 8px;
+            }
+
+            .copy-btn {
+                flex: 1;
+                background: #111;
+                color: #fff;
+            }
+
+            .whatsapp-btn {
+                flex: 1;
+                background: #25d366;
+                color: #fff;
+            }
+
+            /* EMPTY */
+
+            .empty {
+                text-align: center;
+                color: #999;
+                padding: 25px 10px;
+            }
+
+            /* HIDDEN */
+
+            .hidden {
+                display: none;
+            }
+
+            /* MOBILE */
+
+            @media (max-width: 450px) {
+                .container {
+                    padding: 10px;
+                }
+
+                .header h1 {
+                    font-size: 22px;
+                }
+
+                .card {
+                    padding: 14px;
+                }
+
+                .action-buttons {
+                    flex-direction: column;
+                }
+
+                .copy-btn,
+                .whatsapp-btn {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <!-- HEADER -->
+
+            <div class="header">
+                <h1>Absentees List</h1>
+
+                <p>Create your daily attendance message</p>
+            </div>
+
+            <!-- DATE -->
+
+            <div class="card">
+                <label for="date"> Select Date </label>
+
+                <input type="date" id="date" />
+            </div>
+
+            <!-- ATTENDANCE SELECTION -->
+
+            <div class="card">
+                <div class="step">Step <strong id="stepNumber">1</strong></div>
+
+                <!-- TYPE -->
+
+                <label for="attendanceType"> Attendance Type </label>
+
+                <select id="attendanceType" onchange="changeType()">
+                    <option value="absent">Absentees</option>
+
+                    <option value="od">On duty</option>
+
+                    <option value="hour">Hour Absentees</option>
+                </select>
+
+                <!-- HOUR -->
+
+                <div id="hourBox" class="hour-box">
+                    <label for="hour"> Select Hour </label>
+
+                    <select id="hour">
+                        <option value="1">1st Hour</option>
+
+                        <option value="2">2nd Hour</option>
+
+                        <option value="3">3rd Hour</option>
+
+                        <option value="4">4th Hour</option>
+
+                        <option value="5">5th Hour</option>
+
+                        <option value="6">6th Hour</option>
+                    </select>
+                </div>
+
+                <!-- SEARCH -->
+
+                <input
+                    class="search"
+                    type="text"
+                    id="search"
+                    placeholder="Search student..."
+                    oninput="renderStudents()"
+                />
+
+                <!-- STUDENT LIST -->
+
+                <div class="student-list" id="studentList"></div>
+
+                <!-- COUNT -->
+
+                <div class="selected-count">
+                    Selected:
+                    <strong id="selectedCount"> 0 </strong>
+                </div>
+
+                <!-- BUTTONS -->
+
+                <div class="buttons">
+                    <button class="clear-btn" onclick="clearSelection()">
+                        Clear
+                    </button>
+
+                    <button class="next-btn" onclick="nextStep()">
+                        Next →
+                    </button>
+                </div>
+            </div>
+
+            <!-- ADDED ENTRIES -->
+
+            <div class="card" id="entriesCard">
+                <h3 class="entries-title">Added Entries</h3>
+
+                <div id="entries"></div>
+            </div>
+
+            <!-- COMPLETE -->
+
+            <div class="card">
+                <button class="complete-btn" onclick="completeList()">
+                    Complete & Generate List
+                </button>
+            </div>
+
+            <!-- RESULT -->
+
+            <div class="card hidden" id="resultCard">
+                <h3 class="entries-title">WhatsApp Preview</h3>
+
+                <textarea id="message" readonly> </textarea>
+
+                <div class="action-buttons">
+                    <button class="copy-btn" onclick="copyMessage()">
+                        Copy Text
+                    </button>
+
+                    <button class="whatsapp-btn" onclick="sendWhatsApp()">
+                        Send to WhatsApp
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            /* =====================================================
+   STUDENT LIST
+   ===================================================== */
+
+            const students = [
+                "A C Nishanth",
+                "Ankit Satapathy",
+                "Antony Xavier Eruthayaraj V",
+                "Aswath Kumar R",
+                "Boomish V",
+                "Chandru P",
+                "Darshan R M",
+                "Devapriyan J",
+                "Dhana Shree J",
+                "Dharaneesh B N",
+                "Dharani R",
+                "Dharnish K",
+                "Gokul M",
+                "Gowrish K S",
+                "Hari Haresh G",
+                "Hariharan A",
+                "Harinesh V",
+                "Janarthan M C",
+                "K Tharun Karthik",
+                "Kaniha V S",
+                "Karthick S",
+                "Karthik L",
+                "Karthikeyan G",
+                "Kathirvel K",
+                "Kavitha P",
+                "Masaniappan Rahul G",
+                "Mathiyarasu G",
+                "Mokeeshwaran S",
+                "Mounidharan T",
+                "Naveen Kumar S",
+                "Nazrina S",
+                "Nehru Karthick S",
+                "Padmapriya K R",
+                "Prasanth S",
+                "Rajeev P",
+                "Ramanesh S",
+                "Ramsakthi R",
+                "Ranjith V P",
+                "Reshma S",
+                "Ritesh Kumar R",
+                "Rithanya L",
+                "Rupesh S",
+                "Ruthranarayani C",
+                "Sanjay N",
+                "Santhosh M",
+                "Savitha S",
+                "Sibiksha A",
+                "Sindhoora B",
+                "Sneka D",
+                "Sreyadeeppykadhevika PM",
+                "Subi Christi B",
+                "Swetha S N",
+                "Tharun K",
+                "Tharanish"
+                "Vaisali J",
+                "Vaishnavi N",
+                "Vignesh Kumar S",
+                "Vijay Athithyaa M",
+            ];
+
+            /* =====================================================
+   VARIABLES
+   ===================================================== */
+
+            let selectedStudents = [];
+
+            let entries = [];
+
+            let step = 1;
+
+            /* =====================================================
+   SET TODAY AS DEFAULT DATE
+   ===================================================== */
+
+            const dateInput = document.getElementById("date");
+
+            const today = new Date();
+
+            const yyyy = today.getFullYear();
+
+            const mm = String(today.getMonth() + 1).padStart(2, "0");
+
+            const dd = String(today.getDate()).padStart(2, "0");
+
+            dateInput.value = `${yyyy}-${mm}-${dd}`;
+
+            /* =====================================================
+   DATE FORMAT
+   ===================================================== */
+
+            function getFormattedDate() {
+                const value = dateInput.value;
+
+                if (!value) {
+                    return "";
+                }
+
+                const parts = value.split("-");
+
+                const year = parts[0].slice(-2);
+
+                const month = parts[1];
+
+                const day = parts[2];
+
+                return `${day}/${month}/${year}`;
+            }
+
+            /* =====================================================
+   RENDER STUDENTS
+   ===================================================== */
+
+            function renderStudents() {
+                const list = document.getElementById("studentList");
+
+                const search = document
+                    .getElementById("search")
+                    .value.toLowerCase()
+                    .trim();
+
+                list.innerHTML = "";
+
+                const filteredStudents = students.filter((name) =>
+                    name.toLowerCase().includes(search),
+                );
+
+                if (filteredStudents.length === 0) {
+                    list.innerHTML = `
+            <div class="empty">
+                No student found
+            </div>
+        `;
+
+                    updateCount();
+
+                    return;
+                }
+
+                filteredStudents.forEach((name) => {
+                    const student = document.createElement("div");
+
+                    const selected = selectedStudents.includes(name);
+
+                    student.className =
+                        "student " + (selected ? "selected" : "");
+
+                    student.innerHTML = `
+
+            <div class="checkbox">
+                ${selected ? "✓" : ""}
+            </div>
+
+            <div>
+                ${escapeHTML(name)}
+            </div>
+
+        `;
+
+                    student.onclick = function () {
+                        toggleStudent(name);
+                    };
+
+                    list.appendChild(student);
+                });
+
+                updateCount();
+            }
+
+            /* =====================================================
+   TOGGLE STUDENT
+   ===================================================== */
+
+            function toggleStudent(name) {
+                const index = selectedStudents.indexOf(name);
+
+                if (index === -1) {
+                    selectedStudents.push(name);
+                } else {
+                    selectedStudents.splice(index, 1);
+                }
+
+                renderStudents();
+            }
+
+            /* =====================================================
+   CHANGE TYPE
+   ===================================================== */
+
+            function changeType() {
+                const type = document.getElementById("attendanceType").value;
+
+                const hourBox = document.getElementById("hourBox");
+
+                if (type === "hour") {
+                    hourBox.classList.add("show");
+                } else {
+                    hourBox.classList.remove("show");
+                }
+            }
+
+            /* =====================================================
+   UPDATE COUNT
+   ===================================================== */
+
+            function updateCount() {
+                document.getElementById("selectedCount").textContent =
+                    selectedStudents.length;
+            }
+
+            /* =====================================================
+   CLEAR SELECTION
+   ===================================================== */
+
+            function clearSelection() {
+                selectedStudents = [];
+
+                renderStudents();
+            }
+
+            /* =====================================================
+   NEXT STEP
+   ===================================================== */
+
+            function nextStep() {
+                if (selectedStudents.length === 0) {
+                    alert("Please select at least one student.");
+
+                    return;
+                }
+
+                const type = document.getElementById("attendanceType").value;
+
+                const hour = document.getElementById("hour").value;
+
+                /*
+       Prevent duplicate entries
+    */
+
+                selectedStudents.forEach((name) => {
+                    /*
+           For hour absentee,
+           same student can have
+           different hours.
+        */
+
+                    const alreadyExists = entries.some((entry) => {
+                        if (entry.name !== name) {
+                            return false;
+                        }
+
+                        if (entry.type !== type) {
+                            return false;
+                        }
+
+                        if (type === "hour") {
+                            return entry.hour === hour;
+                        }
+
+                        return true;
+                    });
+
+                    if (!alreadyExists) {
+                        entries.push({
+                            name: name,
+
+                            type: type,
+
+                            hour: type === "hour" ? hour : null,
+                        });
+                    }
+                });
+
+                /*
+       Clear selection
+    */
+
+                selectedStudents = [];
+
+                /*
+       Increase step
+    */
+
+                step++;
+
+                document.getElementById("stepNumber").textContent = step;
+
+                /*
+       Reset search
+    */
+
+                document.getElementById("search").value = "";
+
+                /*
+       Hide result if user
+       wants to add more
+    */
+
+                document.getElementById("resultCard").classList.add("hidden");
+
+                renderStudents();
+
+                renderEntries();
+            }
+
+            /* =====================================================
+   RENDER ENTRIES
+   ===================================================== */
+
+            function renderEntries() {
+                const container = document.getElementById("entries");
+
+                container.innerHTML = "";
+
+                if (entries.length === 0) {
+                    container.innerHTML = `
+            <div class="empty">
+                No entries added yet
+            </div>
+        `;
+
+                    return;
+                }
+
+                entries.forEach((entry, index) => {
+                    let typeText = "";
+
+                    if (entry.type === "absent") {
+                        typeText = "Absentee";
+                    }
+
+                    if (entry.type === "od") {
+                        typeText = "On duty";
+                    }
+
+                    if (entry.type === "hour") {
+                        typeText = getHourName(entry.hour) + " Hour Absentee";
+                    }
+
+                    const div = document.createElement("div");
+
+                    div.className = "entry";
+
+                    div.innerHTML = `
+
+                <div>
+
+                    <div class="entry-name">
+
+                        ${index + 1}.
+                        ${escapeHTML(entry.name)}
+
+                    </div>
+
+                    <span class="entry-type">
+
+                        ${typeText}
+
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="remove-btn"
+                    onclick="removeEntry(${index})">
+
+                    Remove
+
+                </button>
+
+            `;
+
+                    container.appendChild(div);
+                });
+            }
+
+            /* =====================================================
+   REMOVE ENTRY
+   ===================================================== */
+
+            function removeEntry(index) {
+                entries.splice(index, 1);
+
+                renderEntries();
+            }
+
+            /* =====================================================
+   COMPLETE LIST
+   ===================================================== */
+
+            function completeList() {
+                if (entries.length === 0) {
+                    alert("Please add at least one student.");
+
+                    return;
+                }
+
+                const selectedDate = getFormattedDate();
+
+                if (!selectedDate) {
+                    alert("Please select a date.");
+
+                    return;
+                }
+
+                /*
+       Filter categories
+    */
+
+                const absentees = entries.filter(
+                    (entry) => entry.type === "absent",
+                );
+
+                const onDuty = entries.filter((entry) => entry.type === "od");
+
+                const hourAbsentees = entries.filter(
+                    (entry) => entry.type === "hour",
+                );
+
+                /*
+       MESSAGE
+
+       Exactly in your
+       requested format.
+    */
+
+                let message = `Absentees on ${selectedDate}\n\n`;
+
+                /*
+       ABSENTEES
+    */
+
+                if (absentees.length > 0) {
+                    absentees.forEach((entry, index) => {
+                        message += `${index + 1}.${entry.name}\n`;
+                    });
+                }
+
+                /*
+       ON DUTY
+    */
+
+                if (onDuty.length > 0) {
+                    message += `\nOn duty\n\n`;
+
+                    onDuty.forEach((entry, index) => {
+                        message += `${index + 1}.${entry.name}\n`;
+                    });
+                }
+
+                /*
+       HOUR ABSENTEES
+    */
+
+                if (hourAbsentees.length > 0) {
+                    message += `\nHour absentees\n\n`;
+
+                    hourAbsentees.forEach((entry, index) => {
+                        message +=
+                            `${index + 1}.${entry.name} - ` +
+                            `${getHourName(entry.hour)} Hour\n`;
+                    });
+                }
+
+                /*
+       SHOW MESSAGE
+    */
+
+                document.getElementById("message").value = message;
+
+                document
+                    .getElementById("resultCard")
+                    .classList.remove("hidden");
+
+                /*
+       Scroll to preview
+    */
+
+                document.getElementById("resultCard").scrollIntoView({
+                    behavior: "smooth",
+                });
+            }
+
+            /* =====================================================
+   COPY MESSAGE
+   ===================================================== */
+
+            async function copyMessage() {
+                const message = document.getElementById("message").value;
+
+                if (!message.trim()) {
+                    alert("Please generate the list first.");
+
+                    return;
+                }
+
+                try {
+                    await navigator.clipboard.writeText(message);
+
+                    alert("List copied successfully!");
+                } catch (error) {
+                    const textarea = document.getElementById("message");
+
+                    textarea.select();
+
+                    document.execCommand("copy");
+
+                    alert("List copied successfully!");
+                }
+            }
+
+            /* =====================================================
+   SEND TO WHATSAPP
+   ===================================================== */
+
+            function sendWhatsApp() {
+                const message = document.getElementById("message").value.trim();
+
+                if (!message) {
+                    alert("Please generate the list first.");
+
+                    return;
+                }
+
+                /*
+       WhatsApp share URL.
+
+       It opens WhatsApp with the
+       message already filled.
+
+       You choose the group/contact
+       inside WhatsApp.
+    */
+
+                const whatsappURL =
+                    "https://api.whatsapp.com/send?text=" +
+                    encodeURIComponent(message);
+
+                window.location.href = whatsappURL;
+            }
+
+            /* =====================================================
+   HOUR NAME
+   ===================================================== */
+
+            function getHourName(hour) {
+                if (hour == 1) {
+                    return "1st";
+                }
+
+                if (hour == 2) {
+                    return "2nd";
+                }
+
+                if (hour == 3) {
+                    return "3rd";
+                }
+
+                return hour + "th";
+            }
+
+            /* =====================================================
+   ESCAPE HTML
+   ===================================================== */
+
+            function escapeHTML(text) {
+                return text
+                    .replace(/&/g, "&amp;")
+                    .replace(/</g, "&lt;")
+                    .replace(/>/g, "&gt;")
+                    .replace(/"/g, "&quot;")
+                    .replace(/'/g, "&#039;");
+            }
+
+            /* =====================================================
+   INITIAL LOAD
+   ===================================================== */
+
+            renderStudents();
+
+            renderEntries();
+        </script>
+    </body>
+</html>
