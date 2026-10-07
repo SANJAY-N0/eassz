@@ -1,810 +1,1816 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="theme-color" content="#111111" />
 
-        <title>Absentees List</title>
+<head>
 
-        <style>
-            * {
-                box-sizing: border-box;
-            }
+    <meta charset="UTF-8">
 
-            body {
-                margin: 0;
-                font-family: Arial, Helvetica, sans-serif;
-                background: #f4f5f7;
-                color: #222;
-            }
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-            .container {
-                width: 100%;
-                max-width: 620px;
-                margin: auto;
-                padding: 15px;
-            }
+    <meta
+        name="theme-color"
+        content="#111111"
+    >
 
-            /* HEADER */
+    <title>Absentees List</title>
 
-            .header {
-                background: #fff;
-                padding: 18px;
-                border-radius: 16px;
-                margin-bottom: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-            }
 
-            .header h1 {
-                margin: 0;
-                font-size: 24px;
-            }
+    <style>
 
-            .header p {
-                margin: 6px 0 0;
-                color: #777;
-                font-size: 14px;
-            }
+        * {
+            box-sizing: border-box;
+        }
 
-            /* CARD */
 
-            .card {
-                background: #fff;
-                padding: 16px;
-                border-radius: 15px;
-                margin-bottom: 15px;
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-            }
+        body {
 
-            /* LABEL */
+            margin: 0;
 
-            label {
-                display: block;
-                font-size: 14px;
-                font-weight: bold;
-                margin-bottom: 7px;
-            }
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
 
-            /* INPUT */
+            background: #f4f5f7;
 
-            input,
-            select,
-            textarea {
-                width: 100%;
-                padding: 12px;
-                border: 1px solid #ddd;
-                border-radius: 10px;
-                font-size: 15px;
-                outline: none;
-                background: #fff;
-            }
+            color: #222;
 
-            input:focus,
-            select:focus,
-            textarea:focus {
-                border-color: #777;
-            }
+        }
 
-            .date-box {
-                margin-bottom: 15px;
-            }
 
-            /* STEP */
+        .container {
 
-            .step {
-                font-size: 13px;
-                color: #777;
-                margin-bottom: 14px;
-            }
+            width: 100%;
 
-            /* SEARCH */
+            max-width: 620px;
 
-            .search {
-                margin-bottom: 10px;
-            }
+            margin: auto;
 
-            /* STUDENT LIST */
+            padding: 15px;
 
-            .student-list {
-                max-height: 350px;
-                overflow-y: auto;
-                border-top: 1px solid #eee;
-                border-bottom: 1px solid #eee;
-            }
+        }
 
-            .student {
-                display: flex;
-                align-items: center;
-                gap: 12px;
-                padding: 13px 8px;
-                border-bottom: 1px solid #eee;
-                cursor: pointer;
-                user-select: none;
-            }
 
-            .student:last-child {
-                border-bottom: none;
-            }
+        /* =========================================
+           HEADER
+        ========================================= */
 
-            .student:hover {
-                background: #f8f8f8;
-            }
+        .header {
 
-            .student.selected {
-                background: #eef5ff;
-            }
+            background: #fff;
 
-            /* CHECKBOX */
+            padding: 18px;
 
-            .checkbox {
-                width: 21px;
-                height: 21px;
-                min-width: 21px;
+            border-radius: 16px;
 
-                border: 2px solid #bbb;
-                border-radius: 5px;
+            margin-bottom: 15px;
 
-                display: flex;
-                align-items: center;
-                justify-content: center;
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.06);
 
-                font-size: 14px;
-            }
+        }
 
-            .student.selected .checkbox {
-                background: #222;
-                border-color: #222;
-                color: #fff;
-            }
 
-            /* COUNT */
+        .header h1 {
 
-            .selected-count {
-                margin-top: 10px;
-                color: #777;
-                font-size: 13px;
-            }
+            margin: 0;
 
-            /* HOUR */
+            font-size: 24px;
 
-            .hour-box {
-                display: none;
-                margin-bottom: 15px;
-            }
+        }
 
-            .hour-box.show {
-                display: block;
-            }
 
-            /* BUTTONS */
+        .header p {
 
-            .buttons {
-                display: flex;
-                gap: 8px;
-                margin-top: 15px;
-            }
+            margin: 6px 0 0;
 
-            button {
-                border: none;
-                border-radius: 10px;
-                padding: 12px 15px;
-                font-size: 14px;
-                font-weight: bold;
-                cursor: pointer;
-            }
+            color: #777;
 
-            button:active {
-                transform: scale(0.98);
-            }
+            font-size: 14px;
 
-            .clear-btn {
-                background: #eee;
-                color: #333;
-            }
+        }
 
-            .next-btn {
-                flex: 1;
-                background: #111;
-                color: #fff;
-            }
 
-            /* ENTRIES */
+        /* =========================================
+           CARD
+        ========================================= */
 
-            .entries-title {
-                margin: 0 0 12px;
-                font-size: 18px;
-            }
+        .card {
 
-            .entry {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
+            background: #fff;
+
+            padding: 16px;
+
+            border-radius: 15px;
+
+            margin-bottom: 15px;
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.06);
+
+        }
+
+
+        /* =========================================
+           DATE + YEAR 50 / 50
+        ========================================= */
+
+        .date-year-row {
+
+            display: flex;
+
+            gap: 15px;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .date-year-row .card {
+
+            flex: 1;
+
+            margin-bottom: 0;
+
+            min-width: 0;
+
+        }
+
+
+        /* =========================================
+           LABEL
+        ========================================= */
+
+        label {
+
+            display: block;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            margin-bottom: 7px;
+
+        }
+
+
+        /* =========================================
+           INPUT
+        ========================================= */
+
+        input,
+        select,
+        textarea {
+
+            width: 100%;
+
+            padding: 12px;
+
+            border: 1px solid #ddd;
+
+            border-radius: 10px;
+
+            font-size: 15px;
+
+            outline: none;
+
+            background: #fff;
+
+        }
+
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+
+            border-color: #777;
+
+        }
+
+
+        .year-select {
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        /* =========================================
+           STEP
+        ========================================= */
+
+        .step {
+
+            font-size: 13px;
+
+            color: #777;
+
+            margin-bottom: 14px;
+
+        }
+
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
+        .search {
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =========================================
+           STUDENT LIST
+        ========================================= */
+
+        .student-list {
+
+            max-height: 350px;
+
+            overflow-y: auto;
+
+            border-top:
+                1px solid #eee;
+
+            border-bottom:
+                1px solid #eee;
+
+        }
+
+
+        .student {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            padding: 13px 8px;
+
+            border-bottom:
+                1px solid #eee;
+
+            cursor: pointer;
+
+            user-select: none;
+
+        }
+
+
+        .student:last-child {
+
+            border-bottom: none;
+
+        }
+
+
+        .student:hover {
+
+            background: #f8f8f8;
+
+        }
+
+
+        .student.selected {
+
+            background: #eef5ff;
+
+        }
+
+
+        /* =========================================
+           CHECKBOX
+        ========================================= */
+
+        .checkbox {
+
+            width: 21px;
+
+            height: 21px;
+
+            min-width: 21px;
+
+            border:
+                2px solid #bbb;
+
+            border-radius: 5px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 14px;
+
+        }
+
+
+        .student.selected .checkbox {
+
+            background: #222;
+
+            border-color: #222;
+
+            color: #fff;
+
+        }
+
+
+        /* =========================================
+           COUNT
+        ========================================= */
+
+        .selected-count {
+
+            margin-top: 10px;
+
+            color: #777;
+
+            font-size: 13px;
+
+        }
+
+
+        /* =========================================
+           HOUR
+        ========================================= */
+
+        .hour-box {
+
+            display: none;
+
+            margin-bottom: 15px;
+
+        }
+
+
+        .hour-box.show {
+
+            display: block;
+
+        }
+
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
+        .buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+            margin-top: 15px;
+
+        }
+
+
+        button {
+
+            border: none;
+
+            border-radius: 10px;
+
+            padding: 12px 15px;
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+        }
+
+
+        button:active {
+
+            transform: scale(0.98);
+
+        }
+
+
+        .clear-btn {
+
+            background: #eee;
+
+            color: #333;
+
+        }
+
+
+        .next-btn {
+
+            flex: 1;
+
+            background: #111;
+
+            color: #fff;
+
+        }
+
+
+        /* =========================================
+           ENTRIES
+        ========================================= */
+
+        .entries-title {
+
+            margin: 0 0 12px;
+
+            font-size: 18px;
+
+        }
+
+
+        .entry {
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            padding: 12px;
+
+            background: #f7f7f7;
+
+            border-radius: 10px;
+
+            margin-bottom: 8px;
+
+        }
+
+
+        .entry-name {
+
+            font-size: 14px;
+
+            font-weight: bold;
+
+        }
+
+
+        .entry-type {
+
+            display: block;
+
+            margin-top: 4px;
+
+            color: #777;
+
+            font-size: 12px;
+
+        }
+
+
+        .remove-btn {
+
+            background: transparent;
+
+            color: #d33;
+
+            padding: 5px 8px;
+
+        }
+
+
+        /* =========================================
+           COMPLETE
+        ========================================= */
+
+        .complete-btn {
+
+            width: 100%;
+
+            background: #25d366;
+
+            color: #fff;
+
+            font-size: 15px;
+
+        }
+
+
+        /* =========================================
+           RESULT
+        ========================================= */
+
+        textarea {
+
+            min-height: 280px;
+
+            resize: vertical;
+
+            line-height: 1.5;
+
+            margin-bottom: 10px;
+
+        }
+
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
+        .action-buttons {
+
+            display: flex;
+
+            gap: 8px;
+
+        }
+
+
+        .copy-btn {
+
+            flex: 1;
+
+            background: #111;
+
+            color: #fff;
+
+        }
+
+
+        .whatsapp-btn {
+
+            flex: 1;
+
+            background: #25d366;
+
+            color: #fff;
+
+        }
+
+
+        /* =========================================
+           EMPTY
+        ========================================= */
+
+        .empty {
+
+            text-align: center;
+
+            color: #999;
+
+            padding: 25px 10px;
+
+        }
+
+
+        /* =========================================
+           HIDDEN
+        ========================================= */
+
+        .hidden {
+
+            display: none;
+
+        }
+
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
+        @media (max-width: 600px) {
+
+            .date-year-row {
+
+                flex-direction: column;
+
                 gap: 10px;
 
-                padding: 12px;
-                background: #f7f7f7;
-
-                border-radius: 10px;
-                margin-bottom: 8px;
             }
 
-            .entry-name {
-                font-size: 14px;
-                font-weight: bold;
-            }
 
-            .entry-type {
-                display: block;
-                margin-top: 4px;
-                color: #777;
-                font-size: 12px;
-            }
+            .date-year-row .card {
 
-            .remove-btn {
-                background: transparent;
-                color: #d33;
-                padding: 5px 8px;
-            }
-
-            /* COMPLETE */
-
-            .complete-btn {
                 width: 100%;
-                background: #25d366;
-                color: #fff;
-                font-size: 15px;
+
             }
 
-            /* RESULT */
+        }
 
-            textarea {
-                min-height: 280px;
-                resize: vertical;
-                line-height: 1.5;
-                margin-bottom: 10px;
+
+        @media (max-width: 450px) {
+
+            .container {
+
+                padding: 10px;
+
             }
 
-            /* ACTION BUTTONS */
+
+            .header h1 {
+
+                font-size: 22px;
+
+            }
+
+
+            .card {
+
+                padding: 14px;
+
+            }
+
 
             .action-buttons {
-                display: flex;
-                gap: 8px;
+
+                flex-direction: column;
+
             }
 
-            .copy-btn {
-                flex: 1;
-                background: #111;
-                color: #fff;
-            }
 
+            .copy-btn,
             .whatsapp-btn {
-                flex: 1;
-                background: #25d366;
-                color: #fff;
+
+                width: 100%;
+
             }
 
-            /* EMPTY */
+        }
 
-            .empty {
-                text-align: center;
-                color: #999;
-                padding: 25px 10px;
-            }
+    </style>
 
-            /* HIDDEN */
+</head>
 
-            .hidden {
-                display: none;
-            }
 
-            /* MOBILE */
+<body>
 
-            @media (max-width: 450px) {
-                .container {
-                    padding: 10px;
-                }
 
-                .header h1 {
-                    font-size: 22px;
-                }
+<div class="container">
 
-                .card {
-                    padding: 14px;
-                }
 
-                .action-buttons {
-                    flex-direction: column;
-                }
+    <!-- =========================================
+         HEADER
+    ========================================= -->
 
-                .copy-btn,
-                .whatsapp-btn {
-                    width: 100%;
-                }
-            }
-        </style>
-    </head>
+    <div class="header">
 
-    <body>
-        <div class="container">
-            <!-- HEADER -->
+        <h1>
+            Absentees List
+        </h1>
 
-            <div class="header">
-                <h1>Absentees List</h1>
+        <p>
+            Create your daily attendance message
+        </p>
 
-                <p>Create your daily attendance message</p>
-            </div>
+    </div>
 
-            <!-- DATE -->
 
-            <div class="card">
-                <label for="date"> Select Date </label>
+    <!-- =========================================
+         DATE + YEAR
+    ========================================= -->
 
-                <input type="date" id="date" />
-            </div>
+    <div class="date-year-row">
 
-            <!-- ATTENDANCE SELECTION -->
 
-            <div class="card">
-                <div class="step">Step <strong id="stepNumber">1</strong></div>
+        <!-- DATE -->
 
-                <!-- TYPE -->
+        <div class="card">
 
-                <label for="attendanceType"> Attendance Type </label>
+            <label for="date">
+                Select Date
+            </label>
 
-                <select id="attendanceType" onchange="changeType()">
-                    <option value="absent">Absentees</option>
+            <input
+                type="date"
+                id="date"
+            >
 
-                    <option value="od">On duty</option>
-
-                    <option value="hour">Hour Absentees</option>
-                </select>
-
-                <!-- HOUR -->
-
-                <div id="hourBox" class="hour-box">
-                    <label for="hour"> Select Hour </label>
-
-                    <select id="hour">
-                        <option value="1">1st Hour</option>
-
-                        <option value="2">2nd Hour</option>
-
-                        <option value="3">3rd Hour</option>
-
-                        <option value="4">4th Hour</option>
-
-                        <option value="5">5th Hour</option>
-
-                        <option value="6">6th Hour</option>
-                    </select>
-                </div>
-
-                <!-- SEARCH -->
-
-                <input
-                    class="search"
-                    type="text"
-                    id="search"
-                    placeholder="Search student..."
-                    oninput="renderStudents()"
-                />
-
-                <!-- STUDENT LIST -->
-
-                <div class="student-list" id="studentList"></div>
-
-                <!-- COUNT -->
-
-                <div class="selected-count">
-                    Selected:
-                    <strong id="selectedCount"> 0 </strong>
-                </div>
-
-                <!-- BUTTONS -->
-
-                <div class="buttons">
-                    <button class="clear-btn" onclick="clearSelection()">
-                        Clear
-                    </button>
-
-                    <button class="next-btn" onclick="nextStep()">
-                        Next →
-                    </button>
-                </div>
-            </div>
-
-            <!-- ADDED ENTRIES -->
-
-            <div class="card" id="entriesCard">
-                <h3 class="entries-title">Added Entries</h3>
-
-                <div id="entries"></div>
-            </div>
-
-            <!-- COMPLETE -->
-
-            <div class="card">
-                <button class="complete-btn" onclick="completeList()">
-                    Complete & Generate List
-                </button>
-            </div>
-
-            <!-- RESULT -->
-
-            <div class="card hidden" id="resultCard">
-                <h3 class="entries-title">WhatsApp Preview</h3>
-
-                <textarea id="message" readonly> </textarea>
-
-                <div class="action-buttons">
-                    <button class="copy-btn" onclick="copyMessage()">
-                        Copy Text
-                    </button>
-
-                    <button class="whatsapp-btn" onclick="sendWhatsApp()">
-                        Send to WhatsApp
-                    </button>
-                </div>
-            </div>
         </div>
 
-        <script>
-            /* =====================================================
-   STUDENT LIST
-   ===================================================== */
 
-            const students = [
-                "A C Nishanth",
-                "Ankit Satapathy",
-                "Antony Xavier Eruthayaraj V",
-                "Aswath Kumar R",
-                "Boomish V",
-                "Chandru P",
-                "Darshan R M",
-                "Devapriyan J",
-                "Dhana Shree J",
-                "Dharaneesh B N",
-                "Dharani R",
-                "Dharnish K",
-                "Gokul M",
-                "Gowrish K S",
-                "Hari Haresh G",
-                "Hariharan A",
-                "Harinesh V",
-                "Janarthan M C",
-                "K Tharun Karthik",
-                "Kaniha V S",
-                "Karthick S",
-                "Karthik L",
-                "Karthikeyan G",
-                "Kathirvel K",
-                "Masaniappan Rahul G",
-                "Mathiyarasu G",
-                "Mokeeshwaran S",
-                "Mounidharan T",
-                "Naveen Kumar S",
-                "Nazrina S",
-                "Nehru Karthick S",
-                "Padmapriya K R",
-                "Prasanth S",
-                "Rajeev P",
-                "Ramanesh S",
-                "Ramsakthi R",
-                "Ranjith V P",
-                "Reshma S",
-                "Ritesh Kumar R",
-                "Rithanya L",
-                "Rupesh S",
-                "Ruthranarayani C",
-                "Sanjay N",
-                "Santhosh M",
-                "Savitha S",
-                "Sibiksha A",
-                "Sindhoora B",
-                "Sneka D",
-                "Sreyadeeppykadhevika PM",
-                "Subi Christi B",
-                "Swetha S N",
-                "Tharun K",
-                "Tharanish",
-                "Vaisali J",
-                "Vaishnavi N",
-                "Vignesh Kumar S",
-                "Vijay Athithyaa M",
-                "Yogaraj"
-            ];
+        <!-- YEAR -->
 
-            /* =====================================================
+        <div class="card">
+
+            <label for="year">
+                Select Year
+            </label>
+
+            <select
+                id="year"
+                class="year-select"
+                onchange="changeYear()"
+            >
+
+                <option value="year1">
+                    Year 1
+                </option>
+
+                <option value="year2">
+                    Year 2
+                </option>
+
+                <option value="year3">
+                    Year 3
+                </option>
+
+            </select>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         ATTENDANCE
+    ========================================= -->
+
+    <div class="card">
+
+
+        <div class="step">
+
+            Step
+            <strong id="stepNumber">
+                1
+            </strong>
+
+        </div>
+
+
+        <!-- ATTENDANCE TYPE -->
+
+        <label for="attendanceType">
+
+            Attendance Type
+
+        </label>
+
+
+        <select
+            id="attendanceType"
+            onchange="changeType()"
+        >
+
+            <option value="absent">
+                Absentees
+            </option>
+
+            <option value="od">
+                On duty
+            </option>
+
+            <option value="hour">
+                Hour Absentees
+            </option>
+
+        </select>
+
+
+        <!-- =====================================
+             HOUR
+        ====================================== -->
+
+        <div
+            id="hourBox"
+            class="hour-box"
+        >
+
+            <label for="hour">
+
+                Select Hour
+
+            </label>
+
+
+            <select id="hour">
+
+                <option value="1">
+                    1st Hour
+                </option>
+
+                <option value="2">
+                    2nd Hour
+                </option>
+
+                <option value="3">
+                    3rd Hour
+                </option>
+
+                <option value="4">
+                    4th Hour
+                </option>
+
+                <option value="5">
+                    5th Hour
+                </option>
+
+                <option value="6">
+                    6th Hour
+                </option>
+
+            </select>
+
+        </div>
+
+
+        <!-- =====================================
+             SEARCH
+        ====================================== -->
+
+        <input
+            class="search"
+            type="text"
+            id="search"
+            placeholder="Search student..."
+            oninput="renderStudents()"
+        >
+
+
+        <!-- =====================================
+             STUDENT LIST
+        ====================================== -->
+
+        <div
+            class="student-list"
+            id="studentList"
+        ></div>
+
+
+        <!-- COUNT -->
+
+        <div class="selected-count">
+
+            Selected:
+
+            <strong id="selectedCount">
+                0
+            </strong>
+
+        </div>
+
+
+        <!-- BUTTONS -->
+
+        <div class="buttons">
+
+
+            <button
+                class="clear-btn"
+                onclick="clearSelection()"
+            >
+
+                Clear
+
+            </button>
+
+
+            <button
+                class="next-btn"
+                onclick="nextStep()"
+            >
+
+                Next →
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         ADDED ENTRIES
+    ========================================= -->
+
+    <div class="card">
+
+
+        <h3 class="entries-title">
+
+            Added Entries
+
+        </h3>
+
+
+        <div id="entries"></div>
+
+
+    </div>
+
+
+    <!-- =========================================
+         COMPLETE
+    ========================================= -->
+
+    <div class="card">
+
+
+        <button
+            class="complete-btn"
+            onclick="completeList()"
+        >
+
+            Complete & Generate List
+
+        </button>
+
+
+    </div>
+
+
+    <!-- =========================================
+         RESULT
+    ========================================= -->
+
+    <div
+        class="card hidden"
+        id="resultCard"
+    >
+
+
+        <h3 class="entries-title">
+
+            WhatsApp Preview
+
+        </h3>
+
+
+        <textarea
+            id="message"
+            readonly
+        ></textarea>
+
+
+        <div class="action-buttons">
+
+
+            <button
+                class="copy-btn"
+                onclick="copyMessage()"
+            >
+
+                Copy Text
+
+            </button>
+
+
+            <button
+                class="whatsapp-btn"
+                onclick="sendWhatsApp()"
+            >
+
+                Send to WhatsApp
+
+            </button>
+
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<script>
+
+
+/* =========================================================
+   STUDENTS BY YEAR
+========================================================= */
+
+
+const studentsByYear = {
+
+
+    /* =====================================================
+       YEAR 1
+    ===================================================== */
+
+    year1: [
+
+        "ANAND A",
+        "ANFAS A",
+        "ASHINA PARVEEN G S",
+        "BAVISHYA M",
+        "BHARANIDHARAN S S",
+        "BHUVANESH A V",
+        "CIBI AKASH P",
+        "DEEPIKA G",
+        "DEEPTHI SRI R",
+        "DENISON E",
+        "DEVA CHANDIRAN P",
+        "DEVENDRAKUMAR S",
+        "DHAKSHAN J",
+        "DHANWIN RAJ R",
+        "GAJALAKSHMI P",
+        "GANESH ARUMUGAM N",
+        "GOKUL K",
+        "GURUVEL K",
+        "HARI PRASATH S",
+        "HASMITHA K",
+        "HEMA SHREE S P",
+        "IRFAN M",
+        "JEEVA R",
+        "KARTHICK S",
+        "KEERTHANA S",
+        "KEERTHANA S",
+        "KEERTHI S",
+        "KISHORE KUMAR B",
+        "MADHUMITHAA A",
+        "MANIVARMA K J",
+        "MEGAVARSHINI P",
+        "MITHRA G R",
+        "MOHAMMED AATHIL S",
+        "MOHANRAJA P",
+        "NANDIKAA SRINIVASAN",
+        "NANTHITHA S",
+        "NASREEN A",
+        "NETHRA M S",
+        "NITHYASRI D",
+        "PRATHIUKSHA E",
+        "PREM AYYAPPA S S",
+        "RAJASHREE M",
+        "RAKSHANA S K",
+        "REEHANA M",
+        "SACHITA A",
+        "SADURTHIYA N",
+        "SAI SIRANJEEVI S",
+        "SANJANA C",
+        "SANJEEV J",
+        "SANJITH L",
+        "SANJITH S",
+        "SHIVA DARSHINI C",
+        "SHOBINI P",
+        "SIRADEEP K G",
+        "SRI DHARSHAN M",
+        "SRI RAGUNANDHAN A",
+        "SUBANA K",
+        "SUJITHA R",
+        "THARUN P K",
+        "UDHAYANITHI S",
+        "VAISNAV J",
+        "VIJAY S K",
+        "VIKASHINI S",
+        "VISHNU SHREE S B",
+        "YAZHINI M",
+        "YOGESH R P"
+
+    ],
+
+
+    /* =====================================================
+       YEAR 2
+    ===================================================== */
+
+    year2: [
+
+        "ABINAYA A",
+        "ABINAYA R",
+        "ADRIEL JOAN A",
+        "ANUSHKA K",
+        "ATHIBA SHREEN RIYAZUDEEN",
+        "BARIVENDHAN B",
+        "BASKAR S E",
+        "DASAMALIKA S",
+        "DHARANEESH K S",
+        "DHEASYA S",
+        "EALLEN A",
+        "GANASHRI V K",
+        "GURUSARAN K",
+        "HARIHARA SETHUPATHI S A",
+        "ITHANYA K",
+        "JANANI M",
+        "KARTHIKA E",
+        "KAVIYAA N S",
+        "KAVYA T",
+        "KEERTHANA B",
+        "KISHOR M",
+        "KRISHNA PRAKASH V",
+        "LAVANYA T",
+        "MADHU SUDANAN B M",
+        "MADHUPRAVEEN K",
+        "MAYAVISHNU M",
+        "MITHRA M",
+        "MITHUN S",
+        "MUGILAN G",
+        "NANDHINI D",
+        "NETHRA K",
+        "NISHA P",
+        "NIVEDHA M",
+        "PAVITHRA SHREE S",
+        "PRADEEP A",
+        "PRANEETH R",
+        "PRETIKSH V N",
+        "PRIYASHANTHINI G",
+        "RAGUL Y",
+        "RAMYA T",
+        "RATHISH R",
+        "RICHARD FELIX J",
+        "RITHISH N",
+        "RK SANJAY",
+        "SANJAI RAMASWAMY R",
+        "SANJAY R",
+        "SARANYA S",
+        "SARAVANAKUMAR S",
+        "SARMATHA S",
+        "SATHYAPRIYA S",
+        "SELVAKUMAR V",
+        "SHREE M",
+        "SIBINANDHAN S",
+        "SUDHARSHAN J",
+        "SUREKA K",
+        "SWATHI G",
+        "TANIYA K B",
+        "THAMARAINAYAGI SURESHKUMAR",
+        "THANESH V",
+        "THANIESHA S",
+        "VINITHA B",
+        "VISHVAA L",
+        "VIVEK R",
+        "VIVITHA K",
+        "Y NANDHANA",
+        "YUVEDHASRI C"
+
+    ],
+
+
+    /* =====================================================
+       YEAR 3
+    ===================================================== */
+
+    year3: [
+
+        "A C Nishanth",
+        "Ankit Satapathy",
+        "Antony Xavier Eruthayaraj V",
+        "Aswath Kumar R",
+        "Boomish V",
+        "Chandru P",
+        "Darshan R M",
+        "Devapriyan J",
+        "Dhana Shree J",
+        "Dharaneesh B N",
+        "Dharani R",
+        "Dharnish K",
+        "Gokul M",
+        "Gowrish K S",
+        "Hari Haresh G",
+        "Hariharan A",
+        "Harinesh V",
+        "Janarthan M C",
+        "K Tharun Karthik",
+        "Kaniha V S",
+        "Karthick S",
+        "Karthik L",
+        "Karthikeyan G",
+        "Kathirvel K",
+        "Masaniappan Rahul G",
+        "Mathiyarasu G",
+        "Mokeeshwaran S",
+        "Mounidharan T",
+        "Naveen Kumar S",
+        "Nazrina S",
+        "Nehru Karthick S",
+        "Padmapriya K R",
+        "Prasanth S",
+        "Rajeev P",
+        "Ramanesh S",
+        "Ramsakthi R",
+        "Ranjith V P",
+        "Reshma S",
+        "Ritesh Kumar R",
+        "Rithanya L",
+        "Rupesh S",
+        "Ruthranarayani C",
+        "Sanjay N",
+        "Santhosh M",
+        "Savitha S",
+        "Sibiksha A",
+        "Sindhoora B",
+        "Sneka D",
+        "Sreyadeeppykadhevika PM",
+        "Subi Christi B",
+        "Swetha S N",
+        "Tharun K",
+        "Tharanish",
+        "Vaisali J",
+        "Vaishnavi N",
+        "Vignesh Kumar S",
+        "Vijay Athithyaa M",
+        "Yogaraj"
+
+    ]
+
+};
+
+
+/* =========================================================
    VARIABLES
-   ===================================================== */
+========================================================= */
 
-            let selectedStudents = [];
+let selectedStudents = [];
 
-            let entries = [];
+let entries = [];
 
-            let step = 1;
+let step = 1;
 
-            /* =====================================================
-   SET TODAY AS DEFAULT DATE
-   ===================================================== */
 
-            const dateInput = document.getElementById("date");
+/* =========================================================
+   GET CURRENT YEAR STUDENTS
+========================================================= */
 
-            const today = new Date();
+function getCurrentStudents() {
 
-            const yyyy = today.getFullYear();
+    const year =
+        document
+            .getElementById("year")
+            .value;
 
-            const mm = String(today.getMonth() + 1).padStart(2, "0");
+    return studentsByYear[year] || [];
 
-            const dd = String(today.getDate()).padStart(2, "0");
+}
 
-            dateInput.value = `${yyyy}-${mm}-${dd}`;
 
-            /* =====================================================
+/* =========================================================
+   SET TODAY'S DATE
+========================================================= */
+
+const dateInput =
+    document.getElementById("date");
+
+
+const today =
+    new Date();
+
+
+const yyyy =
+    today.getFullYear();
+
+
+const mm =
+    String(
+        today.getMonth() + 1
+    ).padStart(2, "0");
+
+
+const dd =
+    String(
+        today.getDate()
+    ).padStart(2, "0");
+
+
+dateInput.value =
+    `${yyyy}-${mm}-${dd}`;
+
+
+/* =========================================================
+   CHANGE YEAR
+========================================================= */
+
+function changeYear() {
+
+    /*
+       Clear selected students
+    */
+
+    selectedStudents = [];
+
+
+    /*
+       Clear search
+    */
+
+    document
+        .getElementById("search")
+        .value = "";
+
+
+    /*
+       Render selected year
+    */
+
+    renderStudents();
+
+}
+
+
+/* =========================================================
    DATE FORMAT
-   ===================================================== */
+========================================================= */
 
-            function getFormattedDate() {
-                const value = dateInput.value;
+function getFormattedDate() {
 
-                if (!value) {
-                    return "";
+    const value =
+        dateInput.value;
+
+
+    if (!value) {
+
+        return "";
+
+    }
+
+
+    const parts =
+        value.split("-");
+
+
+    const year =
+        parts[0].slice(-2);
+
+
+    const month =
+        parts[1];
+
+
+    const day =
+        parts[2];
+
+
+    return `${day}/${month}/${year}`;
+
+}
+
+
+/* =========================================================
+   RENDER STUDENTS
+========================================================= */
+
+function renderStudents() {
+
+    const list =
+        document.getElementById(
+            "studentList"
+        );
+
+
+    const search =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase()
+            .trim();
+
+
+    list.innerHTML = "";
+
+
+    const students =
+        getCurrentStudents();
+
+
+    const filteredStudents =
+        students.filter(
+            (name) =>
+                name
+                    .toLowerCase()
+                    .includes(search)
+        );
+
+
+    if (
+        filteredStudents.length === 0
+    ) {
+
+        list.innerHTML = `
+
+            <div class="empty">
+
+                ${
+                    students.length === 0
+                        ? "No students added for this year"
+                        : "No student found"
                 }
 
-                const parts = value.split("-");
+            </div>
 
-                const year = parts[0].slice(-2);
+        `;
 
-                const month = parts[1];
 
-                const day = parts[2];
+        updateCount();
 
-                return `${day}/${month}/${year}`;
-            }
 
-            /* =====================================================
-   RENDER STUDENTS
-   ===================================================== */
+        return;
 
-            function renderStudents() {
-                const list = document.getElementById("studentList");
+    }
 
-                const search = document
-                    .getElementById("search")
-                    .value.toLowerCase()
-                    .trim();
 
-                list.innerHTML = "";
+    filteredStudents.forEach(
+        (name) => {
 
-                const filteredStudents = students.filter((name) =>
-                    name.toLowerCase().includes(search),
+
+            const student =
+                document.createElement(
+                    "div"
                 );
 
-                if (filteredStudents.length === 0) {
-                    list.innerHTML = `
-            <div class="empty">
-                No student found
-            </div>
-        `;
 
-                    updateCount();
+            const selected =
+                selectedStudents.includes(
+                    name
+                );
 
-                    return;
-                }
 
-                filteredStudents.forEach((name) => {
-                    const student = document.createElement("div");
+            student.className =
+                "student " +
+                (
+                    selected
+                        ? "selected"
+                        : ""
+                );
 
-                    const selected = selectedStudents.includes(name);
 
-                    student.className =
-                        "student " + (selected ? "selected" : "");
+            student.innerHTML = `
 
-                    student.innerHTML = `
+                <div class="checkbox">
 
-            <div class="checkbox">
-                ${selected ? "✓" : ""}
-            </div>
+                    ${
+                        selected
+                            ? "✓"
+                            : ""
+                    }
 
-            <div>
-                ${escapeHTML(name)}
-            </div>
+                </div>
 
-        `;
+                <div>
 
-                    student.onclick = function () {
-                        toggleStudent(name);
-                    };
+                    ${escapeHTML(name)}
 
-                    list.appendChild(student);
-                });
+                </div>
 
-                updateCount();
-            }
+            `;
 
-            /* =====================================================
+
+            student.onclick =
+                function () {
+
+                    toggleStudent(name);
+
+                };
+
+
+            list.appendChild(
+                student
+            );
+
+        }
+    );
+
+
+    updateCount();
+
+}
+
+
+/* =========================================================
    TOGGLE STUDENT
-   ===================================================== */
+========================================================= */
 
-            function toggleStudent(name) {
-                const index = selectedStudents.indexOf(name);
+function toggleStudent(name) {
 
-                if (index === -1) {
-                    selectedStudents.push(name);
-                } else {
-                    selectedStudents.splice(index, 1);
-                }
+    const index =
+        selectedStudents.indexOf(
+            name
+        );
 
-                renderStudents();
-            }
 
-            /* =====================================================
-   CHANGE TYPE
-   ===================================================== */
+    if (index === -1) {
 
-            function changeType() {
-                const type = document.getElementById("attendanceType").value;
+        selectedStudents.push(
+            name
+        );
 
-                const hourBox = document.getElementById("hourBox");
+    } else {
 
-                if (type === "hour") {
-                    hourBox.classList.add("show");
-                } else {
-                    hourBox.classList.remove("show");
-                }
-            }
+        selectedStudents.splice(
+            index,
+            1
+        );
 
-            /* =====================================================
+    }
+
+
+    renderStudents();
+
+}
+
+
+/* =========================================================
+   CHANGE ATTENDANCE TYPE
+========================================================= */
+
+function changeType() {
+
+    const type =
+        document
+            .getElementById(
+                "attendanceType"
+            )
+            .value;
+
+
+    const hourBox =
+        document.getElementById(
+            "hourBox"
+        );
+
+
+    if (type === "hour") {
+
+        hourBox.classList.add(
+            "show"
+        );
+
+    } else {
+
+        hourBox.classList.remove(
+            "show"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
    UPDATE COUNT
-   ===================================================== */
+========================================================= */
 
-            function updateCount() {
-                document.getElementById("selectedCount").textContent =
-                    selectedStudents.length;
-            }
+function updateCount() {
 
-            /* =====================================================
+    document
+        .getElementById(
+            "selectedCount"
+        )
+        .textContent =
+        selectedStudents.length;
+
+}
+
+
+/* =========================================================
    CLEAR SELECTION
-   ===================================================== */
+========================================================= */
 
-            function clearSelection() {
-                selectedStudents = [];
+function clearSelection() {
 
-                renderStudents();
-            }
+    selectedStudents = [];
 
-            /* =====================================================
+    renderStudents();
+
+}
+
+
+/* =========================================================
    NEXT STEP
-   ===================================================== */
+========================================================= */
 
-            function nextStep() {
-                if (selectedStudents.length === 0) {
-                    alert("Please select at least one student.");
+function nextStep() {
 
-                    return;
-                }
+    if (
+        selectedStudents.length === 0
+    ) {
 
-                const type = document.getElementById("attendanceType").value;
+        alert(
+            "Please select at least one student."
+        );
 
-                const hour = document.getElementById("hour").value;
+        return;
 
-                /*
+    }
+
+
+    const type =
+        document
+            .getElementById(
+                "attendanceType"
+            )
+            .value;
+
+
+    const hour =
+        document
+            .getElementById(
+                "hour"
+            )
+            .value;
+
+
+    /*
        Prevent duplicate entries
     */
 
-                selectedStudents.forEach((name) => {
-                    /*
-           For hour absentee,
-           same student can have
-           different hours.
-        */
+    selectedStudents.forEach(
+        (name) => {
 
-                    const alreadyExists = entries.some((entry) => {
-                        if (entry.name !== name) {
+
+            const alreadyExists =
+                entries.some(
+                    (entry) => {
+
+
+                        if (
+                            entry.name !==
+                            name
+                        ) {
+
                             return false;
+
                         }
 
-                        if (entry.type !== type) {
+
+                        if (
+                            entry.type !==
+                            type
+                        ) {
+
                             return false;
+
                         }
 
-                        if (type === "hour") {
-                            return entry.hour === hour;
+
+                        if (
+                            type === "hour"
+                        ) {
+
+                            return (
+                                entry.hour ===
+                                hour
+                            );
+
                         }
+
 
                         return true;
-                    });
 
-                    if (!alreadyExists) {
-                        entries.push({
-                            name: name,
-
-                            type: type,
-
-                            hour: type === "hour" ? hour : null,
-                        });
                     }
+                );
+
+
+            if (!alreadyExists) {
+
+                entries.push({
+
+                    name: name,
+
+                    type: type,
+
+                    hour:
+                        type === "hour"
+                            ? hour
+                            : null
+
                 });
 
-                /*
-       Clear selection
-    */
-
-                selectedStudents = [];
-
-                /*
-       Increase step
-    */
-
-                step++;
-
-                document.getElementById("stepNumber").textContent = step;
-
-                /*
-       Reset search
-    */
-
-                document.getElementById("search").value = "";
-
-                /*
-       Hide result if user
-       wants to add more
-    */
-
-                document.getElementById("resultCard").classList.add("hidden");
-
-                renderStudents();
-
-                renderEntries();
             }
 
-            /* =====================================================
+        }
+    );
+
+
+    selectedStudents = [];
+
+
+    step++;
+
+
+    document
+        .getElementById(
+            "stepNumber"
+        )
+        .textContent =
+        step;
+
+
+    document
+        .getElementById(
+            "search"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "resultCard"
+        )
+        .classList
+        .add("hidden");
+
+
+    renderStudents();
+
+    renderEntries();
+
+}
+
+
+/* =========================================================
    RENDER ENTRIES
-   ===================================================== */
+========================================================= */
 
-            function renderEntries() {
-                const container = document.getElementById("entries");
+function renderEntries() {
 
-                container.innerHTML = "";
+    const container =
+        document.getElementById(
+            "entries"
+        );
 
-                if (entries.length === 0) {
-                    container.innerHTML = `
+
+    container.innerHTML = "";
+
+
+    if (entries.length === 0) {
+
+        container.innerHTML = `
+
             <div class="empty">
+
                 No entries added yet
+
             </div>
+
         `;
 
-                    return;
-                }
+        return;
 
-                entries.forEach((entry, index) => {
-                    let typeText = "";
+    }
 
-                    if (entry.type === "absent") {
-                        typeText = "Absentee";
-                    }
 
-                    if (entry.type === "od") {
-                        typeText = "On duty";
-                    }
+    entries.forEach(
+        (entry, index) => {
 
-                    if (entry.type === "hour") {
-                        typeText = getHourName(entry.hour) + " Hour Absentee";
-                    }
 
-                    const div = document.createElement("div");
+            let typeText = "";
 
-                    div.className = "entry";
 
-                    div.innerHTML = `
+            if (
+                entry.type === "absent"
+            ) {
+
+                typeText =
+                    "Absentee";
+
+            }
+
+
+            if (
+                entry.type === "od"
+            ) {
+
+                typeText =
+                    "On duty";
+
+            }
+
+
+            if (
+                entry.type === "hour"
+            ) {
+
+                typeText =
+                    getHourName(
+                        entry.hour
+                    ) +
+                    " Hour Absentee";
+
+            }
+
+
+            const div =
+                document.createElement(
+                    "div"
+                );
+
+
+            div.className =
+                "entry";
+
+
+            div.innerHTML = `
 
                 <div>
 
                     <div class="entry-name">
 
                         ${index + 1}.
-                        ${escapeHTML(entry.name)}
+                        ${escapeHTML(
+                            entry.name
+                        )}
 
                     </div>
 
@@ -819,7 +1825,8 @@
 
                 <button
                     class="remove-btn"
-                    onclick="removeEntry(${index})">
+                    onclick="removeEntry(${index})"
+                >
 
                     Remove
 
@@ -827,215 +1834,415 @@
 
             `;
 
-                    container.appendChild(div);
-                });
-            }
 
-            /* =====================================================
+            container.appendChild(
+                div
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
    REMOVE ENTRY
-   ===================================================== */
+========================================================= */
 
-            function removeEntry(index) {
-                entries.splice(index, 1);
+function removeEntry(index) {
 
-                renderEntries();
-            }
+    entries.splice(
+        index,
+        1
+    );
 
-            /* =====================================================
+
+    renderEntries();
+
+}
+
+
+/* =========================================================
    COMPLETE LIST
-   ===================================================== */
+========================================================= */
 
-            function completeList() {
-                if (entries.length === 0) {
-                    alert("Please add at least one student.");
+function completeList() {
 
-                    return;
-                }
+    if (entries.length === 0) {
 
-                const selectedDate = getFormattedDate();
+        alert(
+            "Please add at least one student."
+        );
 
-                if (!selectedDate) {
-                    alert("Please select a date.");
+        return;
 
-                    return;
-                }
+    }
 
-                /*
-       Filter categories
+
+    const selectedDate =
+        getFormattedDate();
+
+
+    if (!selectedDate) {
+
+        alert(
+            "Please select a date."
+        );
+
+        return;
+
+    }
+
+
+    const absentees =
+        entries.filter(
+            (entry) =>
+                entry.type ===
+                "absent"
+        );
+
+
+    const onDuty =
+        entries.filter(
+            (entry) =>
+                entry.type ===
+                "od"
+        );
+
+
+    const hourAbsentees =
+        entries.filter(
+            (entry) =>
+                entry.type ===
+                "hour"
+        );
+
+
+    /*
+       Get year
     */
 
-                const absentees = entries.filter(
-                    (entry) => entry.type === "absent",
-                );
+    const year =
+        document
+            .getElementById(
+                "year"
+            )
+            .value;
 
-                const onDuty = entries.filter((entry) => entry.type === "od");
 
-                const hourAbsentees = entries.filter(
-                    (entry) => entry.type === "hour",
-                );
+    let yearName = "Year 3";
 
-                /*
-       MESSAGE
 
-       Exactly in your
-       requested format.
+    if (year === "year1") {
+
+        yearName = "Year 1";
+
+    }
+
+
+    if (year === "year2") {
+
+        yearName = "Year 2";
+
+    }
+
+
+    /*
+       Message
     */
 
-                let message = `Absentees on ${selectedDate}\n\n`;
+    let message =
+        `Absentees on ${selectedDate}\n`;
 
-                /*
+
+    message +=
+        `Year: ${yearName}\n\n`;
+
+
+    /*
        ABSENTEES
     */
 
-                if (absentees.length > 0) {
-                    absentees.forEach((entry, index) => {
-                        message += `${index + 1}.${entry.name}\n`;
-                    });
-                }
+    if (
+        absentees.length > 0
+    ) {
 
-                /*
+        absentees.forEach(
+            (entry, index) => {
+
+                message +=
+                    `${index + 1}.${entry.name}\n`;
+
+            }
+        );
+
+    }
+
+
+    /*
        ON DUTY
     */
 
-                if (onDuty.length > 0) {
-                    message += `\nOn duty\n\n`;
+    if (
+        onDuty.length > 0
+    ) {
 
-                    onDuty.forEach((entry, index) => {
-                        message += `${index + 1}.${entry.name}\n`;
-                    });
-                }
+        message +=
+            `\nOn duty\n\n`;
 
-                /*
+
+        onDuty.forEach(
+            (entry, index) => {
+
+                message +=
+                    `${index + 1}.${entry.name}\n`;
+
+            }
+        );
+
+    }
+
+
+    /*
        HOUR ABSENTEES
     */
 
-                if (hourAbsentees.length > 0) {
-                    message += `\nHour absentees\n\n`;
+    if (
+        hourAbsentees.length > 0
+    ) {
 
-                    hourAbsentees.forEach((entry, index) => {
-                        message +=
-                            `${index + 1}.${entry.name} - ` +
-                            `${getHourName(entry.hour)} Hour\n`;
-                    });
-                }
+        message +=
+            `\nHour absentees\n\n`;
 
-                /*
-       SHOW MESSAGE
-    */
 
-                document.getElementById("message").value = message;
+        hourAbsentees.forEach(
+            (entry, index) => {
 
-                document
-                    .getElementById("resultCard")
-                    .classList.remove("hidden");
+                message +=
+                    `${index + 1}.${entry.name} - ` +
+                    `${getHourName(
+                        entry.hour
+                    )} Hour\n`;
 
-                /*
-       Scroll to preview
-    */
-
-                document.getElementById("resultCard").scrollIntoView({
-                    behavior: "smooth",
-                });
             }
+        );
 
-            /* =====================================================
+    }
+
+
+    /*
+       Show result
+    */
+
+    document
+        .getElementById(
+            "message"
+        )
+        .value =
+        message;
+
+
+    document
+        .getElementById(
+            "resultCard"
+        )
+        .classList
+        .remove("hidden");
+
+
+    document
+        .getElementById(
+            "resultCard"
+        )
+        .scrollIntoView({
+            behavior: "smooth"
+        });
+
+}
+
+
+/* =========================================================
    COPY MESSAGE
-   ===================================================== */
+========================================================= */
 
-            async function copyMessage() {
-                const message = document.getElementById("message").value;
+async function copyMessage() {
 
-                if (!message.trim()) {
-                    alert("Please generate the list first.");
+    const message =
+        document
+            .getElementById(
+                "message"
+            )
+            .value;
 
-                    return;
-                }
 
-                try {
-                    await navigator.clipboard.writeText(message);
+    if (!message.trim()) {
 
-                    alert("List copied successfully!");
-                } catch (error) {
-                    const textarea = document.getElementById("message");
+        alert(
+            "Please generate the list first."
+        );
 
-                    textarea.select();
+        return;
 
-                    document.execCommand("copy");
+    }
 
-                    alert("List copied successfully!");
-                }
-            }
 
-            /* =====================================================
-   SEND TO WHATSAPP
-   ===================================================== */
+    try {
 
-            function sendWhatsApp() {
-                const message = document.getElementById("message").value.trim();
+        await navigator
+            .clipboard
+            .writeText(
+                message
+            );
 
-                if (!message) {
-                    alert("Please generate the list first.");
 
-                    return;
-                }
+        alert(
+            "List copied successfully!"
+        );
 
-                /*
-       WhatsApp share URL.
+    } catch (error) {
 
-       It opens WhatsApp with the
-       message already filled.
+        const textarea =
+            document.getElementById(
+                "message"
+            );
 
-       You choose the group/contact
-       inside WhatsApp.
-    */
 
-                const whatsappURL =
-                    "https://api.whatsapp.com/send?text=" +
-                    encodeURIComponent(message);
+        textarea.select();
 
-                window.location.href = whatsappURL;
-            }
 
-            /* =====================================================
+        document.execCommand(
+            "copy"
+        );
+
+
+        alert(
+            "List copied successfully!"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   SEND WHATSAPP
+========================================================= */
+
+function sendWhatsApp() {
+
+    const message =
+        document
+            .getElementById(
+                "message"
+            )
+            .value
+            .trim();
+
+
+    if (!message) {
+
+        alert(
+            "Please generate the list first."
+        );
+
+        return;
+
+    }
+
+
+    const whatsappURL =
+        "https://api.whatsapp.com/send?text=" +
+        encodeURIComponent(
+            message
+        );
+
+
+    window.location.href =
+        whatsappURL;
+
+}
+
+
+/* =========================================================
    HOUR NAME
-   ===================================================== */
+========================================================= */
 
-            function getHourName(hour) {
-                if (hour == 1) {
-                    return "1st";
-                }
+function getHourName(hour) {
 
-                if (hour == 2) {
-                    return "2nd";
-                }
+    if (hour == 1) {
 
-                if (hour == 3) {
-                    return "3rd";
-                }
+        return "1st";
 
-                return hour + "th";
-            }
+    }
 
-            /* =====================================================
+
+    if (hour == 2) {
+
+        return "2nd";
+
+    }
+
+
+    if (hour == 3) {
+
+        return "3rd";
+
+    }
+
+
+    return hour + "th";
+
+}
+
+
+/* =========================================================
    ESCAPE HTML
-   ===================================================== */
+========================================================= */
 
-            function escapeHTML(text) {
-                return text
-                    .replace(/&/g, "&amp;")
-                    .replace(/</g, "&lt;")
-                    .replace(/>/g, "&gt;")
-                    .replace(/"/g, "&quot;")
-                    .replace(/'/g, "&#039;");
-            }
+function escapeHTML(text) {
 
-            /* =====================================================
+    return text
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
    INITIAL LOAD
-   ===================================================== */
+========================================================= */
 
-            renderStudents();
+renderStudents();
 
-            renderEntries();
-        </script>
-    </body>
+renderEntries();
+
+
+</script>
+
+
+</body>
+
 </html>
