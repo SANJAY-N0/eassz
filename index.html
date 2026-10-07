@@ -26,7 +26,6 @@
 
 
         body {
-
             margin: 0;
 
             font-family:
@@ -37,12 +36,10 @@
             background: #f4f5f7;
 
             color: #222;
-
         }
 
 
         .container {
-
             width: 100%;
 
             max-width: 620px;
@@ -50,7 +47,6 @@
             margin: auto;
 
             padding: 15px;
-
         }
 
 
@@ -59,7 +55,6 @@
         ========================================= */
 
         .header {
-
             background: #fff;
 
             padding: 18px;
@@ -71,27 +66,22 @@
             box-shadow:
                 0 2px 10px
                 rgba(0, 0, 0, 0.06);
-
         }
 
 
         .header h1 {
-
             margin: 0;
 
             font-size: 24px;
-
         }
 
 
         .header p {
-
             margin: 6px 0 0;
 
             color: #777;
 
             font-size: 14px;
-
         }
 
 
@@ -100,7 +90,6 @@
         ========================================= */
 
         .card {
-
             background: #fff;
 
             padding: 16px;
@@ -112,33 +101,28 @@
             box-shadow:
                 0 2px 10px
                 rgba(0, 0, 0, 0.06);
-
         }
 
 
         /* =========================================
-           DATE + YEAR 50 / 50
+           DATE + YEAR - 50 / 50
         ========================================= */
 
         .date-year-row {
-
             display: flex;
 
             gap: 15px;
 
             margin-bottom: 15px;
-
         }
 
 
         .date-year-row .card {
-
             flex: 1;
-
-            margin-bottom: 0;
 
             min-width: 0;
 
+            margin-bottom: 0;
         }
 
 
@@ -147,7 +131,6 @@
         ========================================= */
 
         label {
-
             display: block;
 
             font-size: 14px;
@@ -155,18 +138,16 @@
             font-weight: bold;
 
             margin-bottom: 7px;
-
         }
 
 
         /* =========================================
-           INPUT
+           INPUT / SELECT / TEXTAREA
         ========================================= */
 
         input,
         select,
         textarea {
-
             width: 100%;
 
             padding: 12px;
@@ -179,26 +160,52 @@
 
             outline: none;
 
-            background: #fff;
+            background-color: #fff;
 
+            color: #000;
+        }
+
+
+        /* IMPORTANT:
+           Dropdown text black
+        */
+
+        select {
+            color: #000;
+
+            background-color: #fff;
+
+            -webkit-text-fill-color: #000;
+        }
+
+
+        select option {
+            color: #000;
+
+            background-color: #fff;
+        }
+
+
+        input::placeholder {
+            color: #888;
         }
 
 
         input:focus,
         select:focus,
         textarea:focus {
-
             border-color: #777;
-
         }
 
 
         .year-select {
-
             font-weight: bold;
 
             cursor: pointer;
 
+            color: #000 !important;
+
+            background-color: #fff !important;
         }
 
 
@@ -207,13 +214,11 @@
         ========================================= */
 
         .step {
-
             font-size: 13px;
 
             color: #777;
 
             margin-bottom: 14px;
-
         }
 
 
@@ -222,9 +227,7 @@
         ========================================= */
 
         .search {
-
             margin-bottom: 10px;
-
         }
 
 
@@ -233,7 +236,6 @@
         ========================================= */
 
         .student-list {
-
             max-height: 350px;
 
             overflow-y: auto;
@@ -243,12 +245,10 @@
 
             border-bottom:
                 1px solid #eee;
-
         }
 
 
         .student {
-
             display: flex;
 
             align-items: center;
@@ -263,28 +263,21 @@
             cursor: pointer;
 
             user-select: none;
-
         }
 
 
         .student:last-child {
-
             border-bottom: none;
-
         }
 
 
         .student:hover {
-
             background: #f8f8f8;
-
         }
 
 
         .student.selected {
-
             background: #eef5ff;
-
         }
 
 
@@ -293,7 +286,6 @@
         ========================================= */
 
         .checkbox {
-
             width: 21px;
 
             height: 21px;
@@ -312,53 +304,44 @@
             justify-content: center;
 
             font-size: 14px;
-
         }
 
 
         .student.selected .checkbox {
-
             background: #222;
 
             border-color: #222;
 
             color: #fff;
-
         }
 
 
         /* =========================================
-           COUNT
+           SELECTED COUNT
         ========================================= */
 
         .selected-count {
-
             margin-top: 10px;
 
             color: #777;
 
             font-size: 13px;
-
         }
 
 
         /* =========================================
-           HOUR
+           HOUR BOX
         ========================================= */
 
         .hour-box {
-
             display: none;
 
             margin-bottom: 15px;
-
         }
 
 
         .hour-box.show {
-
             display: block;
-
         }
 
 
@@ -367,18 +350,15 @@
         ========================================= */
 
         .buttons {
-
             display: flex;
 
             gap: 8px;
 
             margin-top: 15px;
-
         }
 
 
         button {
-
             border: none;
 
             border-radius: 10px;
@@ -390,34 +370,27 @@
             font-weight: bold;
 
             cursor: pointer;
-
         }
 
 
         button:active {
-
             transform: scale(0.98);
-
         }
 
 
         .clear-btn {
-
             background: #eee;
 
             color: #333;
-
         }
 
 
         .next-btn {
-
             flex: 1;
 
             background: #111;
 
             color: #fff;
-
         }
 
 
@@ -426,16 +399,13 @@
         ========================================= */
 
         .entries-title {
-
             margin: 0 0 12px;
 
             font-size: 18px;
-
         }
 
 
         .entry {
-
             display: flex;
 
             align-items: center;
@@ -451,21 +421,17 @@
             border-radius: 10px;
 
             margin-bottom: 8px;
-
         }
 
 
         .entry-name {
-
             font-size: 14px;
 
             font-weight: bold;
-
         }
 
 
         .entry-type {
-
             display: block;
 
             margin-top: 4px;
@@ -473,18 +439,15 @@
             color: #777;
 
             font-size: 12px;
-
         }
 
 
         .remove-btn {
-
             background: transparent;
 
             color: #d33;
 
             padding: 5px 8px;
-
         }
 
 
@@ -493,7 +456,6 @@
         ========================================= */
 
         .complete-btn {
-
             width: 100%;
 
             background: #25d366;
@@ -501,7 +463,6 @@
             color: #fff;
 
             font-size: 15px;
-
         }
 
 
@@ -510,7 +471,6 @@
         ========================================= */
 
         textarea {
-
             min-height: 280px;
 
             resize: vertical;
@@ -519,6 +479,9 @@
 
             margin-bottom: 10px;
 
+            color: #000;
+
+            background: #fff;
         }
 
 
@@ -527,33 +490,27 @@
         ========================================= */
 
         .action-buttons {
-
             display: flex;
 
             gap: 8px;
-
         }
 
 
         .copy-btn {
-
             flex: 1;
 
             background: #111;
 
             color: #fff;
-
         }
 
 
         .whatsapp-btn {
-
             flex: 1;
 
             background: #25d366;
 
             color: #fff;
-
         }
 
 
@@ -562,13 +519,11 @@
         ========================================= */
 
         .empty {
-
             text-align: center;
 
             color: #999;
 
             padding: 25px 10px;
-
         }
 
 
@@ -577,9 +532,7 @@
         ========================================= */
 
         .hidden {
-
             display: none;
-
         }
 
 
@@ -590,18 +543,14 @@
         @media (max-width: 600px) {
 
             .date-year-row {
-
                 flex-direction: column;
 
                 gap: 10px;
-
             }
 
 
             .date-year-row .card {
-
                 width: 100%;
-
             }
 
         }
@@ -610,38 +559,28 @@
         @media (max-width: 450px) {
 
             .container {
-
                 padding: 10px;
-
             }
 
 
             .header h1 {
-
                 font-size: 22px;
-
             }
 
 
             .card {
-
                 padding: 14px;
-
             }
 
 
             .action-buttons {
-
                 flex-direction: column;
-
             }
 
 
             .copy-btn,
             .whatsapp-btn {
-
                 width: 100%;
-
             }
 
         }
@@ -732,7 +671,7 @@
 
 
     <!-- =========================================
-         ATTENDANCE
+         ATTENDANCE SELECTION
     ========================================= -->
 
     <div class="card">
@@ -741,6 +680,7 @@
         <div class="step">
 
             Step
+
             <strong id="stepNumber">
                 1
             </strong>
@@ -993,7 +933,6 @@
    STUDENTS BY YEAR
 ========================================================= */
 
-
 const studentsByYear = {
 
 
@@ -1001,152 +940,152 @@ const studentsByYear = {
        YEAR 1
     ===================================================== */
 
-    year1: [
+ year1: [
 
-        "ANAND A",
-        "ANFAS A",
-        "ASHINA PARVEEN G S",
-        "BAVISHYA M",
-        "BHARANIDHARAN S S",
-        "BHUVANESH A V",
-        "CIBI AKASH P",
-        "DEEPIKA G",
-        "DEEPTHI SRI R",
-        "DENISON E",
-        "DEVA CHANDIRAN P",
-        "DEVENDRAKUMAR S",
-        "DHAKSHAN J",
-        "DHANWIN RAJ R",
-        "GAJALAKSHMI P",
-        "GANESH ARUMUGAM N",
-        "GOKUL K",
-        "GURUVEL K",
-        "HARI PRASATH S",
-        "HASMITHA K",
-        "HEMA SHREE S P",
-        "IRFAN M",
-        "JEEVA R",
-        "KARTHICK S",
-        "KEERTHANA S",
-        "KEERTHANA S",
-        "KEERTHI S",
-        "KISHORE KUMAR B",
-        "MADHUMITHAA A",
-        "MANIVARMA K J",
-        "MEGAVARSHINI P",
-        "MITHRA G R",
-        "MOHAMMED AATHIL S",
-        "MOHANRAJA P",
-        "NANDIKAA SRINIVASAN",
-        "NANTHITHA S",
-        "NASREEN A",
-        "NETHRA M S",
-        "NITHYASRI D",
-        "PRATHIUKSHA E",
-        "PREM AYYAPPA S S",
-        "RAJASHREE M",
-        "RAKSHANA S K",
-        "REEHANA M",
-        "SACHITA A",
-        "SADURTHIYA N",
-        "SAI SIRANJEEVI S",
-        "SANJANA C",
-        "SANJEEV J",
-        "SANJITH L",
-        "SANJITH S",
-        "SHIVA DARSHINI C",
-        "SHOBINI P",
-        "SIRADEEP K G",
-        "SRI DHARSHAN M",
-        "SRI RAGUNANDHAN A",
-        "SUBANA K",
-        "SUJITHA R",
-        "THARUN P K",
-        "UDHAYANITHI S",
-        "VAISNAV J",
-        "VIJAY S K",
-        "VIKASHINI S",
-        "VISHNU SHREE S B",
-        "YAZHINI M",
-        "YOGESH R P"
+    "Anand A",
+    "Anfas A",
+    "Ashina Parveen G S",
+    "Bavishya M",
+    "Bharanidharan S S",
+    "Bhuvanesh A V",
+    "Cibi Akash P",
+    "Deepika G",
+    "Deepthi Sri R",
+    "Denison E",
+    "Deva Chandiran P",
+    "Devendrakumar S",
+    "Dhakshan J",
+    "Dhanwin Raj R",
+    "Gajalakshmi P",
+    "Ganesh Arumugam N",
+    "Gokul K",
+    "Guruvel K",
+    "Hari Prasath S",
+    "Hasmitha K",
+    "Hema Shree S P",
+    "Irfan M",
+    "Jeeva R",
+    "Karthick S",
+    "Keerthana S",
+    "Keerthana S",
+    "Keerthi S",
+    "Kishore Kumar B",
+    "Madhumithaa A",
+    "Manivarma K J",
+    "Megavarshini P",
+    "Mithra G R",
+    "Mohammed Aathil S",
+    "Mohanraja P",
+    "Nandikaa Srinivasan",
+    "Nanthitha S",
+    "Nasreen A",
+    "Nethra M S",
+    "Nithyasri D",
+    "Prathiuksha E",
+    "Prem Ayyappa S S",
+    "Rajashree M",
+    "Rakshana S K",
+    "Reehana M",
+    "Sachita A",
+    "Sadurthiya N",
+    "Sai Siranjeevi S",
+    "Sanjana C",
+    "Sanjeev J",
+    "Sanjith L",
+    "Sanjith S",
+    "Shiva Darshini C",
+    "Shobini P",
+    "Siradeep K G",
+    "Sri Dharshan M",
+    "Sri Ragunandhan A",
+    "Subana K",
+    "Sujitha R",
+    "Tharun P K",
+    "Udhayanithi S",
+    "Vaisnav J",
+    "Vijay S K",
+    "Vikashini S",
+    "Vishnu Shree S B",
+    "Yazhini M",
+    "Yogesh R P"
 
-    ],
+],
 
 
     /* =====================================================
        YEAR 2
     ===================================================== */
 
-    year2: [
+   year2: [
 
-        "ABINAYA A",
-        "ABINAYA R",
-        "ADRIEL JOAN A",
-        "ANUSHKA K",
-        "ATHIBA SHREEN RIYAZUDEEN",
-        "BARIVENDHAN B",
-        "BASKAR S E",
-        "DASAMALIKA S",
-        "DHARANEESH K S",
-        "DHEASYA S",
-        "EALLEN A",
-        "GANASHRI V K",
-        "GURUSARAN K",
-        "HARIHARA SETHUPATHI S A",
-        "ITHANYA K",
-        "JANANI M",
-        "KARTHIKA E",
-        "KAVIYAA N S",
-        "KAVYA T",
-        "KEERTHANA B",
-        "KISHOR M",
-        "KRISHNA PRAKASH V",
-        "LAVANYA T",
-        "MADHU SUDANAN B M",
-        "MADHUPRAVEEN K",
-        "MAYAVISHNU M",
-        "MITHRA M",
-        "MITHUN S",
-        "MUGILAN G",
-        "NANDHINI D",
-        "NETHRA K",
-        "NISHA P",
-        "NIVEDHA M",
-        "PAVITHRA SHREE S",
-        "PRADEEP A",
-        "PRANEETH R",
-        "PRETIKSH V N",
-        "PRIYASHANTHINI G",
-        "RAGUL Y",
-        "RAMYA T",
-        "RATHISH R",
-        "RICHARD FELIX J",
-        "RITHISH N",
-        "RK SANJAY",
-        "SANJAI RAMASWAMY R",
-        "SANJAY R",
-        "SARANYA S",
-        "SARAVANAKUMAR S",
-        "SARMATHA S",
-        "SATHYAPRIYA S",
-        "SELVAKUMAR V",
-        "SHREE M",
-        "SIBINANDHAN S",
-        "SUDHARSHAN J",
-        "SUREKA K",
-        "SWATHI G",
-        "TANIYA K B",
-        "THAMARAINAYAGI SURESHKUMAR",
-        "THANESH V",
-        "THANIESHA S",
-        "VINITHA B",
-        "VISHVAA L",
-        "VIVEK R",
-        "VIVITHA K",
-        "Y NANDHANA",
-        "YUVEDHASRI C"
+    "Abinaya A",
+    "Abinaya R",
+    "Adriel Joan A",
+    "Anushka K",
+    "Athiba Shreen Riyazudeen",
+    "Barivendhan B",
+    "Baskar S E",
+    "Dasamalika S",
+    "Dharaneesh K S",
+    "Dheasya S",
+    "Eallen A",
+    "Ganashri V K",
+    "Gurusaran K",
+    "Harihara Sethupathi S A",
+    "Ithanya K",
+    "Janani M",
+    "Karthika E",
+    "Kaviyaa N S",
+    "Kavya T",
+    "Keerthana B",
+    "Kishor M",
+    "Krishna Prakash V",
+    "Lavanya T",
+    "Madhu Sudanan B M",
+    "Madhupraveen K",
+    "Mayavishnu M",
+    "Mithra M",
+    "Mithun S",
+    "Mugilan G",
+    "Nandhini D",
+    "Nethra K",
+    "Nisha P",
+    "Nivedha M",
+    "Pavithra Shree S",
+    "Pradeep A",
+    "Praneeth R",
+    "Pretiksh V N",
+    "Priyashanthini G",
+    "Ragul Y",
+    "Ramya T",
+    "Rathish R",
+    "Richard Felix J",
+    "Rithish N",
+    "RK Sanjay",
+    "Sanjai Ramaswamy R",
+    "Sanjay R",
+    "Saranya S",
+    "Saravanakumar S",
+    "Sarmatha S",
+    "Sathyapriya S",
+    "Selvakumar V",
+    "Shree M",
+    "Sibinandhan S",
+    "Sudharshan J",
+    "Sureka K",
+    "Swathi G",
+    "Taniya K B",
+    "Thamarainayagi Sureshkumar",
+    "Thanesh V",
+    "Thaniesha S",
+    "Vinitha B",
+    "Vishvaa L",
+    "Vivek R",
+    "Vivitha K",
+    "Y Nandhana",
+    "Yuvedhasri C"
 
-    ],
+],
 
 
     /* =====================================================
@@ -1284,25 +1223,11 @@ dateInput.value =
 
 function changeYear() {
 
-    /*
-       Clear selected students
-    */
-
     selectedStudents = [];
-
-
-    /*
-       Clear search
-    */
 
     document
         .getElementById("search")
         .value = "";
-
-
-    /*
-       Render selected year
-    */
 
     renderStudents();
 
@@ -1320,9 +1245,7 @@ function getFormattedDate() {
 
 
     if (!value) {
-
         return "";
-
     }
 
 
@@ -1404,15 +1327,12 @@ function renderStudents() {
 
         updateCount();
 
-
         return;
-
     }
 
 
     filteredStudents.forEach(
         (name) => {
-
 
             const student =
                 document.createElement(
@@ -1448,9 +1368,7 @@ function renderStudents() {
                 </div>
 
                 <div>
-
                     ${escapeHTML(name)}
-
                 </div>
 
             `;
@@ -1464,9 +1382,7 @@ function renderStudents() {
                 };
 
 
-            list.appendChild(
-                student
-            );
+            list.appendChild(student);
 
         }
     );
@@ -1591,7 +1507,6 @@ function nextStep() {
         );
 
         return;
-
     }
 
 
@@ -1611,26 +1526,18 @@ function nextStep() {
             .value;
 
 
-    /*
-       Prevent duplicate entries
-    */
-
     selectedStudents.forEach(
         (name) => {
-
 
             const alreadyExists =
                 entries.some(
                     (entry) => {
 
-
                         if (
                             entry.name !==
                             name
                         ) {
-
                             return false;
-
                         }
 
 
@@ -1638,9 +1545,7 @@ function nextStep() {
                             entry.type !==
                             type
                         ) {
-
                             return false;
-
                         }
 
 
@@ -1739,21 +1644,17 @@ function renderEntries() {
         container.innerHTML = `
 
             <div class="empty">
-
                 No entries added yet
-
             </div>
 
         `;
 
         return;
-
     }
 
 
     entries.forEach(
         (entry, index) => {
-
 
             let typeText = "";
 
@@ -1827,9 +1728,7 @@ function renderEntries() {
                     class="remove-btn"
                     onclick="removeEntry(${index})"
                 >
-
                     Remove
-
                 </button>
 
             `;
@@ -1875,7 +1774,6 @@ function completeList() {
         );
 
         return;
-
     }
 
 
@@ -1890,7 +1788,6 @@ function completeList() {
         );
 
         return;
-
     }
 
 
@@ -1918,38 +1815,25 @@ function completeList() {
         );
 
 
-    /*
-       Get year
-    */
-
     const year =
         document
-            .getElementById(
-                "year"
-            )
+            .getElementById("year")
             .value;
 
 
-    let yearName = "Year 3";
+    let yearName =
+        "Year 3";
 
 
     if (year === "year1") {
-
         yearName = "Year 1";
-
     }
 
 
     if (year === "year2") {
-
         yearName = "Year 2";
-
     }
 
-
-    /*
-       Message
-    */
 
     let message =
         `Absentees on ${selectedDate}\n`;
@@ -1959,13 +1843,9 @@ function completeList() {
         `Year: ${yearName}\n\n`;
 
 
-    /*
-       ABSENTEES
-    */
+    /* ABSENTEES */
 
-    if (
-        absentees.length > 0
-    ) {
+    if (absentees.length > 0) {
 
         absentees.forEach(
             (entry, index) => {
@@ -1979,13 +1859,9 @@ function completeList() {
     }
 
 
-    /*
-       ON DUTY
-    */
+    /* ON DUTY */
 
-    if (
-        onDuty.length > 0
-    ) {
+    if (onDuty.length > 0) {
 
         message +=
             `\nOn duty\n\n`;
@@ -2003,13 +1879,9 @@ function completeList() {
     }
 
 
-    /*
-       HOUR ABSENTEES
-    */
+    /* HOUR ABSENTEES */
 
-    if (
-        hourAbsentees.length > 0
-    ) {
+    if (hourAbsentees.length > 0) {
 
         message +=
             `\nHour absentees\n\n`;
@@ -2030,30 +1902,20 @@ function completeList() {
     }
 
 
-    /*
-       Show result
-    */
-
     document
-        .getElementById(
-            "message"
-        )
+        .getElementById("message")
         .value =
         message;
 
 
     document
-        .getElementById(
-            "resultCard"
-        )
+        .getElementById("resultCard")
         .classList
         .remove("hidden");
 
 
     document
-        .getElementById(
-            "resultCard"
-        )
+        .getElementById("resultCard")
         .scrollIntoView({
             behavior: "smooth"
         });
@@ -2069,9 +1931,7 @@ async function copyMessage() {
 
     const message =
         document
-            .getElementById(
-                "message"
-            )
+            .getElementById("message")
             .value;
 
 
@@ -2082,7 +1942,6 @@ async function copyMessage() {
         );
 
         return;
-
     }
 
 
@@ -2125,7 +1984,7 @@ async function copyMessage() {
 
 
 /* =========================================================
-   SEND WHATSAPP
+   SEND TO WHATSAPP
 ========================================================= */
 
 function sendWhatsApp() {
@@ -2146,7 +2005,6 @@ function sendWhatsApp() {
         );
 
         return;
-
     }
 
 
@@ -2170,23 +2028,17 @@ function sendWhatsApp() {
 function getHourName(hour) {
 
     if (hour == 1) {
-
         return "1st";
-
     }
 
 
     if (hour == 2) {
-
         return "2nd";
-
     }
 
 
     if (hour == 3) {
-
         return "3rd";
-
     }
 
 
@@ -2238,7 +2090,6 @@ function escapeHTML(text) {
 renderStudents();
 
 renderEntries();
-
 
 </script>
 
