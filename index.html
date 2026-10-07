@@ -2,412 +2,808 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="theme-color" content="#111111">
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="theme-color"
+        content="#111111"
+    >
 
     <title>Absentees List</title>
 
+
     <style>
+
         * {
             box-sizing: border-box;
         }
 
+
         body {
             margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
             background: #f4f5f7;
+
             color: #222;
         }
 
+
         .container {
             width: 100%;
+
             max-width: 620px;
+
             margin: auto;
+
             padding: 15px;
         }
 
+
+        /* =========================================
+           HEADER
+        ========================================= */
+
         .header {
             background: #fff;
+
             padding: 18px;
+
             border-radius: 16px;
+
             margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.06);
         }
+
 
         .header h1 {
             margin: 0;
+
             font-size: 24px;
         }
 
+
         .header p {
             margin: 6px 0 0;
+
             color: #777;
+
             font-size: 14px;
         }
+
+
+        /* =========================================
+           CARD
+        ========================================= */
 
         .card {
             background: #fff;
+
             padding: 16px;
+
             border-radius: 15px;
+
             margin-bottom: 15px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+
+            box-shadow:
+                0 2px 10px
+                rgba(0, 0, 0, 0.06);
         }
+
+
+        /* =========================================
+           DATE + YEAR
+        ========================================= */
 
         .date-year-row {
             display: flex;
+
             gap: 15px;
+
             margin-bottom: 15px;
         }
 
+
         .date-year-row .card {
             flex: 1;
+
             min-width: 0;
+
             margin-bottom: 0;
         }
 
+
+        /* =========================================
+           LABEL
+        ========================================= */
+
         label {
             display: block;
+
             font-size: 14px;
+
             font-weight: bold;
+
             margin-bottom: 7px;
         }
+
+
+        /* =========================================
+           INPUT / SELECT / TEXTAREA
+        ========================================= */
 
         input,
         select,
         textarea {
+
             width: 100%;
+
             padding: 12px;
+
             border: 1px solid #ddd;
+
             border-radius: 10px;
+
             font-size: 15px;
+
             outline: none;
+
             background-color: #fff;
+
             color: #000;
         }
 
+
         select {
+
             color: #000;
+
             background-color: #fff;
+
             -webkit-text-fill-color: #000;
         }
 
+
         select option {
+
             color: #000;
+
             background-color: #fff;
         }
+
 
         input::placeholder {
             color: #888;
         }
 
+
         input:focus,
         select:focus,
         textarea:focus {
+
             border-color: #777;
         }
 
+
         .year-select {
+
             font-weight: bold;
+
             cursor: pointer;
+
             color: #000 !important;
+
             background-color: #fff !important;
         }
 
+
+        /* =========================================
+           STEP
+        ========================================= */
+
         .step {
+
             font-size: 13px;
+
             color: #777;
+
             margin-bottom: 14px;
         }
 
+
+        /* =========================================
+           SEARCH
+        ========================================= */
+
         .search {
+
             margin-bottom: 10px;
         }
 
+
+        /* =========================================
+           STUDENT LIST
+        ========================================= */
+
         .student-list {
+
             max-height: 350px;
+
             overflow-y: auto;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
+
+            border-top:
+                1px solid #eee;
+
+            border-bottom:
+                1px solid #eee;
         }
 
+
         .student {
+
             display: flex;
+
             align-items: center;
+
             gap: 12px;
+
             padding: 13px 8px;
-            border-bottom: 1px solid #eee;
+
+            border-bottom:
+                1px solid #eee;
+
             cursor: pointer;
+
             user-select: none;
         }
 
+
         .student:last-child {
+
             border-bottom: none;
         }
 
+
         .student:hover {
+
             background: #f8f8f8;
         }
 
+
         .student.selected {
+
             background: #eef5ff;
         }
 
+
+        /* =========================================
+           CHECKBOX
+        ========================================= */
+
         .checkbox {
+
             width: 21px;
+
             height: 21px;
+
             min-width: 21px;
-            border: 2px solid #bbb;
+
+            border:
+                2px solid #bbb;
+
             border-radius: 5px;
+
             display: flex;
+
             align-items: center;
+
             justify-content: center;
+
             font-size: 14px;
         }
 
+
         .student.selected .checkbox {
+
             background: #222;
+
             border-color: #222;
+
             color: #fff;
         }
 
+
+        /* =========================================
+           SELECTED COUNT
+        ========================================= */
+
         .selected-count {
+
             margin-top: 10px;
+
             color: #777;
+
             font-size: 13px;
         }
 
+
+        /* =========================================
+           HOUR BOX
+        ========================================= */
+
         .hour-box {
+
             display: none;
+
             margin-bottom: 15px;
         }
 
+
         .hour-box.show {
+
             display: block;
         }
 
+
+        /* =========================================
+           BUTTONS
+        ========================================= */
+
         .buttons {
+
             display: flex;
+
             gap: 8px;
+
             margin-top: 15px;
         }
 
+
         button {
+
             border: none;
+
             border-radius: 10px;
+
             padding: 12px 15px;
+
             font-size: 14px;
+
             font-weight: bold;
+
             cursor: pointer;
         }
 
+
         button:active {
+
             transform: scale(0.98);
         }
 
+
         .clear-btn {
+
             background: #eee;
+
             color: #333;
         }
 
+
         .next-btn {
+
             flex: 1;
+
             background: #111;
+
             color: #fff;
         }
 
+
+        /* =========================================
+           ENTRIES
+        ========================================= */
+
         .entries-title {
+
             margin: 0 0 12px;
+
             font-size: 18px;
         }
 
+
         .entry {
+
             display: flex;
+
             align-items: center;
+
             justify-content: space-between;
+
             gap: 10px;
+
             padding: 12px;
+
             background: #f7f7f7;
+
             border-radius: 10px;
+
             margin-bottom: 8px;
         }
 
+
         .entry-name {
+
             font-size: 14px;
+
             font-weight: bold;
         }
 
+
         .entry-type {
+
             display: block;
+
             margin-top: 4px;
+
             color: #777;
+
             font-size: 12px;
         }
 
+
         .remove-btn {
+
             background: transparent;
+
             color: #d33;
+
             padding: 5px 8px;
         }
 
+
+        /* =========================================
+           COMPLETE
+        ========================================= */
+
         .complete-btn {
+
             width: 100%;
+
             background: #25d366;
+
             color: #fff;
+
             font-size: 15px;
         }
 
+
+        /* =========================================
+           RESULT
+        ========================================= */
+
         textarea {
+
             min-height: 280px;
+
             resize: vertical;
+
             line-height: 1.5;
+
             margin-bottom: 10px;
+
             color: #000;
+
             background: #fff;
         }
 
+
+        /* =========================================
+           ACTION BUTTONS
+        ========================================= */
+
         .action-buttons {
+
             display: flex;
+
             gap: 8px;
         }
 
+
         .copy-btn {
+
             flex: 1;
+
             background: #111;
+
             color: #fff;
         }
+
 
         .whatsapp-btn {
+
             flex: 1;
+
             background: #25d366;
+
             color: #fff;
         }
 
+
+        /* =========================================
+           EMPTY
+        ========================================= */
+
         .empty {
+
             text-align: center;
+
             color: #999;
+
             padding: 25px 10px;
         }
 
+
+        /* =========================================
+           HIDDEN
+        ========================================= */
+
         .hidden {
+
             display: none;
         }
 
+
+        /* =========================================
+           MOBILE
+        ========================================= */
+
         @media (max-width: 600px) {
+
             .date-year-row {
+
                 flex-direction: column;
+
                 gap: 10px;
             }
 
+
             .date-year-row .card {
+
                 width: 100%;
             }
+
         }
 
+
         @media (max-width: 450px) {
+
             .container {
+
                 padding: 10px;
             }
 
+
             .header h1 {
+
                 font-size: 22px;
             }
 
+
             .card {
+
                 padding: 14px;
             }
 
+
             .action-buttons {
+
                 flex-direction: column;
             }
 
+
             .copy-btn,
             .whatsapp-btn {
+
                 width: 100%;
             }
+
         }
+
     </style>
+
 </head>
+
 
 <body>
 
+
 <div class="container">
 
+
+    <!-- =========================================
+         HEADER
+    ========================================= -->
+
     <div class="header">
-        <h1>Absentees List</h1>
-        <p>Create your daily attendance message</p>
+
+        <h1>
+            Absentees List
+        </h1>
+
+        <p>
+            Create your daily attendance message
+        </p>
+
     </div>
 
-    <!-- DATE + YEAR -->
+
+    <!-- =========================================
+         DATE + YEAR
+    ========================================= -->
 
     <div class="date-year-row">
 
-        <div class="card">
-            <label for="date">Select Date</label>
-            <input type="date" id="date">
-        </div>
+
+        <!-- DATE -->
 
         <div class="card">
-            <label for="year">Select Year</label>
+
+            <label for="date">
+                Select Date
+            </label>
+
+            <input
+                type="date"
+                id="date"
+            >
+
+        </div>
+
+
+        <!-- YEAR -->
+
+        <div class="card">
+
+            <label for="year">
+                Select Year
+            </label>
 
             <select
                 id="year"
                 class="year-select"
                 onchange="changeYear()"
             >
-                <option value="year1">Year 1</option>
-                <option value="year2">Year 2</option>
-                <option value="year3">Year 3</option>
+
+                <option value="year1">
+                    Year 1
+                </option>
+
+                <option value="year2">
+                    Year 2
+                </option>
+
+                <option value="year3">
+                    Year 3
+                </option>
+
             </select>
+
         </div>
+
 
     </div>
 
 
-    <!-- ATTENDANCE SELECTION -->
+    <!-- =========================================
+         ATTENDANCE SELECTION
+    ========================================= -->
 
     <div class="card">
 
+
         <div class="step">
-            Step <strong id="stepNumber">1</strong>
+
+            Step
+
+            <strong id="stepNumber">
+                1
+            </strong>
+
         </div>
 
+
+        <!-- ATTENDANCE TYPE -->
+
         <label for="attendanceType">
+
             Attendance Type
+
         </label>
+
 
         <select
             id="attendanceType"
             onchange="changeType()"
         >
-            <option value="absent">Absentees</option>
-            <option value="od">On duty</option>
-            <option value="hour">Hour Absentees</option>
+
+            <option value="absent">
+                Absentees
+            </option>
+
+            <option value="od">
+                On duty
+            </option>
+
+            <option value="hour">
+                Hour Absentees
+            </option>
+
         </select>
 
 
-        <!-- HOUR -->
+        <!-- =====================================
+             HOUR
+        ====================================== -->
 
-        <div id="hourBox" class="hour-box">
+        <div
+            id="hourBox"
+            class="hour-box"
+        >
 
             <label for="hour">
+
                 Select Hour
+
             </label>
 
+
             <select id="hour">
-                <option value="1">1st Hour</option>
-                <option value="2">2nd Hour</option>
-                <option value="3">3rd Hour</option>
-                <option value="4">4th Hour</option>
-                <option value="5">5th Hour</option>
-                <option value="6">6th Hour</option>
+
+                <option value="1">
+                    1st Hour
+                </option>
+
+                <option value="2">
+                    2nd Hour
+                </option>
+
+                <option value="3">
+                    3rd Hour
+                </option>
+
+                <option value="4">
+                    4th Hour
+                </option>
+
+                <option value="5">
+                    5th Hour
+                </option>
+
+                <option value="6">
+                    6th Hour
+                </option>
+
             </select>
 
         </div>
 
 
-        <!-- SEARCH -->
+        <!-- =====================================
+             SEARCH
+        ====================================== -->
 
         <input
             class="search"
@@ -418,7 +814,9 @@
         >
 
 
-        <!-- STUDENT LIST -->
+        <!-- =====================================
+             STUDENT LIST
+        ====================================== -->
 
         <div
             class="student-list"
@@ -426,70 +824,106 @@
         ></div>
 
 
+        <!-- COUNT -->
+
         <div class="selected-count">
+
             Selected:
-            <strong id="selectedCount">0</strong>
+
+            <strong id="selectedCount">
+                0
+            </strong>
+
         </div>
 
 
+        <!-- BUTTONS -->
+
         <div class="buttons">
+
 
             <button
                 class="clear-btn"
                 onclick="clearSelection()"
             >
+
                 Clear
+
             </button>
+
 
             <button
                 class="next-btn"
                 onclick="nextStep()"
             >
+
                 Next →
+
             </button>
+
 
         </div>
 
+
     </div>
 
 
-    <!-- ADDED ENTRIES -->
+    <!-- =========================================
+         ADDED ENTRIES
+    ========================================= -->
 
     <div class="card">
 
+
         <h3 class="entries-title">
+
             Added Entries
+
         </h3>
+
 
         <div id="entries"></div>
 
+
     </div>
 
 
-    <!-- COMPLETE -->
+    <!-- =========================================
+         COMPLETE
+    ========================================= -->
 
     <div class="card">
+
 
         <button
             class="complete-btn"
             onclick="completeList()"
         >
+
             Complete & Generate List
+
         </button>
+
 
     </div>
 
 
-    <!-- RESULT -->
+    <!-- =========================================
+         RESULT
+    ========================================= -->
 
     <div
         class="card hidden"
         id="resultCard"
     >
 
+
         <h3 class="entries-title">
+
             WhatsApp Preview
+
         </h3>
+
 
         <textarea
             id="message"
@@ -499,34 +933,49 @@
 
         <div class="action-buttons">
 
+
             <button
                 class="copy-btn"
                 onclick="copyMessage()"
             >
+
                 Copy Text
+
             </button>
+
 
             <button
                 class="whatsapp-btn"
-                onclick="sendWhatsAppGroup()"
+                onclick="sendWhatsApp()"
             >
-                📱 Send to WhatsApp Group
+
+                📱 Send to WhatsApp
+
             </button>
+
 
         </div>
 
+
     </div>
+
 
 </div>
 
 
 <script>
 
+
 /* =========================================================
    STUDENTS BY YEAR
 ========================================================= */
 
 const studentsByYear = {
+
+
+    /* =====================================================
+       YEAR 1
+    ===================================================== */
 
     year1: [
 
@@ -600,6 +1049,10 @@ const studentsByYear = {
     ],
 
 
+    /* =====================================================
+       YEAR 2
+    ===================================================== */
+
     year2: [
 
         "Abinaya A",
@@ -672,6 +1125,10 @@ const studentsByYear = {
     ],
 
 
+    /* =====================================================
+       YEAR 3
+    ===================================================== */
+
     year3: [
 
         "A C Nishanth",
@@ -739,27 +1196,6 @@ const studentsByYear = {
 
 
 /* =========================================================
-   WHATSAPP GROUP LINKS
-========================================================= */
-
-const whatsappGroups = {
-
-    // ADD YOUR YEAR 1 GROUP LINK HERE
-    year1:
-        "YEAR_1_WHATSAPP_GROUP_LINK",
-
-    // YOUR YEAR 2 GROUP
-    year2:
-        "https://chat.whatsapp.com/EusxO2Id0Mz3qTKgAclCNJ",
-
-    // ADD YOUR YEAR 3 GROUP LINK HERE
-    year3:
-        "YEAR_3_WHATSAPP_GROUP_LINK"
-
-};
-
-
-/* =========================================================
    VARIABLES
 ========================================================= */
 
@@ -771,25 +1207,15 @@ let step = 1;
 
 
 /* =========================================================
-   GET CURRENT YEAR
-========================================================= */
-
-function getCurrentYear() {
-
-    return document
-        .getElementById("year")
-        .value;
-
-}
-
-
-/* =========================================================
    GET CURRENT STUDENTS
 ========================================================= */
 
 function getCurrentStudents() {
 
-    const year = getCurrentYear();
+    const year =
+        document
+            .getElementById("year")
+            .value;
 
     return studentsByYear[year] || [];
 
@@ -803,18 +1229,26 @@ function getCurrentStudents() {
 const dateInput =
     document.getElementById("date");
 
-const today = new Date();
+
+const today =
+    new Date();
+
 
 const yyyy =
     today.getFullYear();
 
+
 const mm =
-    String(today.getMonth() + 1)
-        .padStart(2, "0");
+    String(
+        today.getMonth() + 1
+    ).padStart(2, "0");
+
 
 const dd =
-    String(today.getDate())
-        .padStart(2, "0");
+    String(
+        today.getDate()
+    ).padStart(2, "0");
+
 
 dateInput.value =
     `${yyyy}-${mm}-${dd}`;
@@ -832,18 +1266,22 @@ function changeYear() {
 
     step = 1;
 
+
     document
         .getElementById("stepNumber")
         .textContent = "1";
+
 
     document
         .getElementById("search")
         .value = "";
 
+
     document
         .getElementById("resultCard")
         .classList
         .add("hidden");
+
 
     renderStudents();
 
@@ -861,21 +1299,28 @@ function getFormattedDate() {
     const value =
         dateInput.value;
 
+
     if (!value) {
+
         return "";
     }
+
 
     const parts =
         value.split("-");
 
+
     const year =
         parts[0].slice(-2);
+
 
     const month =
         parts[1];
 
+
     const day =
         parts[2];
+
 
     return `${day}/${month}/${year}`;
 
@@ -893,6 +1338,7 @@ function renderStudents() {
             "studentList"
         );
 
+
     const search =
         document
             .getElementById("search")
@@ -900,10 +1346,13 @@ function renderStudents() {
             .toLowerCase()
             .trim();
 
+
     list.innerHTML = "";
+
 
     const students =
         getCurrentStudents();
+
 
     const filteredStudents =
         students.filter(
@@ -914,7 +1363,9 @@ function renderStudents() {
         );
 
 
-    if (filteredStudents.length === 0) {
+    if (
+        filteredStudents.length === 0
+    ) {
 
         list.innerHTML = `
 
@@ -930,6 +1381,7 @@ function renderStudents() {
 
         `;
 
+
         updateCount();
 
         return;
@@ -944,8 +1396,12 @@ function renderStudents() {
                     "div"
                 );
 
+
             const selected =
-                selectedStudents.includes(name);
+                selectedStudents.includes(
+                    name
+                );
+
 
             student.className =
                 "student " +
@@ -954,6 +1410,7 @@ function renderStudents() {
                         ? "selected"
                         : ""
                 );
+
 
             student.innerHTML = `
 
@@ -968,10 +1425,13 @@ function renderStudents() {
                 </div>
 
                 <div>
+
                     ${escapeHTML(name)}
+
                 </div>
 
             `;
+
 
             student.onclick =
                 function () {
@@ -979,6 +1439,7 @@ function renderStudents() {
                     toggleStudent(name);
 
                 };
+
 
             list.appendChild(student);
 
@@ -998,11 +1459,16 @@ function renderStudents() {
 function toggleStudent(name) {
 
     const index =
-        selectedStudents.indexOf(name);
+        selectedStudents.indexOf(
+            name
+        );
+
 
     if (index === -1) {
 
-        selectedStudents.push(name);
+        selectedStudents.push(
+            name
+        );
 
     } else {
 
@@ -1012,6 +1478,7 @@ function toggleStudent(name) {
         );
 
     }
+
 
     renderStudents();
 
@@ -1026,19 +1493,29 @@ function changeType() {
 
     const type =
         document
-            .getElementById("attendanceType")
+            .getElementById(
+                "attendanceType"
+            )
             .value;
 
+
     const hourBox =
-        document.getElementById("hourBox");
+        document.getElementById(
+            "hourBox"
+        );
+
 
     if (type === "hour") {
 
-        hourBox.classList.add("show");
+        hourBox.classList.add(
+            "show"
+        );
 
     } else {
 
-        hourBox.classList.remove("show");
+        hourBox.classList.remove(
+            "show"
+        );
 
     }
 
@@ -1052,7 +1529,9 @@ function changeType() {
 function updateCount() {
 
     document
-        .getElementById("selectedCount")
+        .getElementById(
+            "selectedCount"
+        )
         .textContent =
         selectedStudents.length;
 
@@ -1078,7 +1557,9 @@ function clearSelection() {
 
 function nextStep() {
 
-    if (selectedStudents.length === 0) {
+    if (
+        selectedStudents.length === 0
+    ) {
 
         alert(
             "Please select at least one student."
@@ -1090,12 +1571,17 @@ function nextStep() {
 
     const type =
         document
-            .getElementById("attendanceType")
+            .getElementById(
+                "attendanceType"
+            )
             .value;
+
 
     const hour =
         document
-            .getElementById("hour")
+            .getElementById(
+                "hour"
+            )
             .value;
 
 
@@ -1107,24 +1593,34 @@ function nextStep() {
                     entry => {
 
                         if (
-                            entry.name !== name
+                            entry.name !==
+                            name
                         ) {
+
                             return false;
                         }
+
 
                         if (
-                            entry.type !== type
+                            entry.type !==
+                            type
                         ) {
+
                             return false;
                         }
 
-                        if (type === "hour") {
+
+                        if (
+                            type === "hour"
+                        ) {
 
                             return (
-                                entry.hour === hour
+                                entry.hour ===
+                                hour
                             );
 
                         }
+
 
                         return true;
 
@@ -1155,21 +1651,32 @@ function nextStep() {
 
     selectedStudents = [];
 
+
     step++;
 
+
     document
-        .getElementById("stepNumber")
+        .getElementById(
+            "stepNumber"
+        )
         .textContent =
         step;
 
-    document
-        .getElementById("search")
-        .value = "";
 
     document
-        .getElementById("resultCard")
+        .getElementById(
+            "search"
+        )
+        .value = "";
+
+
+    document
+        .getElementById(
+            "resultCard"
+        )
         .classList
         .add("hidden");
+
 
     renderStudents();
 
@@ -1185,19 +1692,28 @@ function nextStep() {
 function renderEntries() {
 
     const container =
-        document.getElementById("entries");
+        document.getElementById(
+            "entries"
+        );
+
 
     container.innerHTML = "";
 
-    if (entries.length === 0) {
+
+    if (
+        entries.length === 0
+    ) {
 
         container.innerHTML = `
 
             <div class="empty">
+
                 No entries added yet
+
             </div>
 
         `;
+
 
         return;
     }
@@ -1208,24 +1724,35 @@ function renderEntries() {
 
             let typeText = "";
 
-            if (entry.type === "absent") {
+
+            if (
+                entry.type === "absent"
+            ) {
 
                 typeText =
                     "Absentee";
 
             }
 
-            if (entry.type === "od") {
+
+            if (
+                entry.type === "od"
+            ) {
 
                 typeText =
                     "On duty";
 
             }
 
-            if (entry.type === "hour") {
+
+            if (
+                entry.type === "hour"
+            ) {
 
                 typeText =
-                    getHourName(entry.hour) +
+                    getHourName(
+                        entry.hour
+                    ) +
                     " Hour Absentee";
 
             }
@@ -1236,8 +1763,10 @@ function renderEntries() {
                     "div"
                 );
 
+
             div.className =
                 "entry";
+
 
             div.innerHTML = `
 
@@ -1246,9 +1775,12 @@ function renderEntries() {
                     <div class="entry-name">
 
                         ${index + 1}.
-                        ${escapeHTML(entry.name)}
+                        ${escapeHTML(
+                            entry.name
+                        )}
 
                     </div>
+
 
                     <span class="entry-type">
 
@@ -1263,12 +1795,17 @@ function renderEntries() {
                     class="remove-btn"
                     onclick="removeEntry(${index})"
                 >
+
                     Remove
+
                 </button>
 
             `;
 
-            container.appendChild(div);
+
+            container.appendChild(
+                div
+            );
 
         }
     );
@@ -1287,6 +1824,7 @@ function removeEntry(index) {
         1
     );
 
+
     renderEntries();
 
 }
@@ -1298,7 +1836,9 @@ function removeEntry(index) {
 
 function completeList() {
 
-    if (entries.length === 0) {
+    if (
+        entries.length === 0
+    ) {
 
         alert(
             "Please add at least one student."
@@ -1310,6 +1850,7 @@ function completeList() {
 
     const selectedDate =
         getFormattedDate();
+
 
     if (!selectedDate) {
 
@@ -1324,38 +1865,43 @@ function completeList() {
     const absentees =
         entries.filter(
             entry =>
-                entry.type === "absent"
+                entry.type ===
+                "absent"
         );
 
 
     const onDuty =
         entries.filter(
             entry =>
-                entry.type === "od"
+                entry.type ===
+                "od"
         );
 
 
     const hourAbsentees =
         entries.filter(
             entry =>
-                entry.type === "hour"
+                entry.type ===
+                "hour"
         );
 
 
     /*
-        IMPORTANT:
-
-        Year is intentionally NOT added
-        to the WhatsApp output.
+        YEAR IS NOT ADDED
+        TO THE FINAL OUTPUT.
     */
 
     let message =
         `Absentees on ${selectedDate}\n\n`;
 
 
-    /* ABSENTEES */
+    /* =====================================
+       ABSENTEES
+    ===================================== */
 
-    if (absentees.length > 0) {
+    if (
+        absentees.length > 0
+    ) {
 
         absentees.forEach(
             (entry, index) => {
@@ -1369,12 +1915,17 @@ function completeList() {
     }
 
 
-    /* ON DUTY */
+    /* =====================================
+       ON DUTY
+    ===================================== */
 
-    if (onDuty.length > 0) {
+    if (
+        onDuty.length > 0
+    ) {
 
         message +=
             `\nOn duty\n\n`;
+
 
         onDuty.forEach(
             (entry, index) => {
@@ -1388,19 +1939,26 @@ function completeList() {
     }
 
 
-    /* HOUR ABSENTEES */
+    /* =====================================
+       HOUR ABSENTEES
+    ===================================== */
 
-    if (hourAbsentees.length > 0) {
+    if (
+        hourAbsentees.length > 0
+    ) {
 
         message +=
             `\nHour absentees\n\n`;
+
 
         hourAbsentees.forEach(
             (entry, index) => {
 
                 message +=
                     `${index + 1}.${entry.name} - ` +
-                    `${getHourName(entry.hour)} Hour\n`;
+                    `${getHourName(
+                        entry.hour
+                    )} Hour\n`;
 
             }
         );
@@ -1409,19 +1967,25 @@ function completeList() {
 
 
     document
-        .getElementById("message")
+        .getElementById(
+            "message"
+        )
         .value =
         message;
 
 
     document
-        .getElementById("resultCard")
+        .getElementById(
+            "resultCard"
+        )
         .classList
         .remove("hidden");
 
 
     document
-        .getElementById("resultCard")
+        .getElementById(
+            "resultCard"
+        )
         .scrollIntoView({
             behavior: "smooth"
         });
@@ -1437,10 +2001,15 @@ async function copyMessage() {
 
     const message =
         document
-            .getElementById("message")
+            .getElementById(
+                "message"
+            )
             .value;
 
-    if (!message.trim()) {
+
+    if (
+        !message.trim()
+    ) {
 
         alert(
             "Please generate the list first."
@@ -1454,7 +2023,10 @@ async function copyMessage() {
 
         await navigator
             .clipboard
-            .writeText(message);
+            .writeText(
+                message
+            );
+
 
         alert(
             "List copied successfully!"
@@ -1463,11 +2035,18 @@ async function copyMessage() {
     } catch (error) {
 
         const textarea =
-            document.getElementById("message");
+            document.getElementById(
+                "message"
+            );
+
 
         textarea.select();
 
-        document.execCommand("copy");
+
+        document.execCommand(
+            "copy"
+        );
+
 
         alert(
             "List copied successfully!"
@@ -1479,14 +2058,16 @@ async function copyMessage() {
 
 
 /* =========================================================
-   SEND TO YEAR-SPECIFIC WHATSAPP GROUP
+   SEND TO WHATSAPP
 ========================================================= */
 
-async function sendWhatsAppGroup() {
+async function sendWhatsApp() {
 
     const message =
         document
-            .getElementById("message")
+            .getElementById(
+                "message"
+            )
             .value
             .trim();
 
@@ -1501,70 +2082,56 @@ async function sendWhatsAppGroup() {
     }
 
 
-    const currentYear =
-        getCurrentYear();
-
-
-    const groupLink =
-        whatsappGroups[currentYear];
-
-
     /*
-        Check if the group link has
-        actually been added.
-    */
-
-    if (
-        !groupLink ||
-        groupLink.includes("YEAR_1") ||
-        groupLink.includes("YEAR_3")
-    ) {
-
-        alert(
-            "WhatsApp group link is not added for this year yet."
-        );
-
-        return;
-    }
-
-
-    /*
-        Copy the message first.
+        STEP 1
+        COPY THE STUDENT LIST
     */
 
     try {
 
         await navigator
             .clipboard
-            .writeText(message);
+            .writeText(
+                message
+            );
 
     } catch (error) {
 
         const textarea =
-            document.getElementById("message");
+            document.getElementById(
+                "message"
+            );
+
 
         textarea.select();
 
-        document.execCommand("copy");
+
+        document.execCommand(
+            "copy"
+        );
 
     }
 
 
     /*
-        Open the selected year's
-        WhatsApp group.
+        STEP 2
+        OPEN WHATSAPP
+
+        No specific group.
+        The user can select
+        any person or group.
     */
 
+    const whatsappURL =
+        "https://api.whatsapp.com/send?text=" +
+        encodeURIComponent(
+            message
+        );
+
+
     window.open(
-        groupLink,
+        whatsappURL,
         "_blank"
-    );
-
-
-    alert(
-        "Message copied!\n\n" +
-        "WhatsApp group opened.\n" +
-        "Paste the message and send it."
     );
 
 }
@@ -1577,16 +2144,22 @@ async function sendWhatsAppGroup() {
 function getHourName(hour) {
 
     if (hour == 1) {
+
         return "1st";
     }
 
+
     if (hour == 2) {
+
         return "2nd";
     }
 
+
     if (hour == 3) {
+
         return "3rd";
     }
+
 
     return hour + "th";
 
@@ -1600,11 +2173,31 @@ function getHourName(hour) {
 function escapeHTML(text) {
 
     return text
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+
+        .replace(
+            /</g,
+            "&lt;"
+        )
+
+        .replace(
+            />/g,
+            "&gt;"
+        )
+
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
@@ -1617,7 +2210,10 @@ renderStudents();
 
 renderEntries();
 
+
 </script>
 
+
 </body>
+
 </html>
